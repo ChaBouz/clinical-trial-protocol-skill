@@ -1,0 +1,59 @@
+# ctg_mcp_field_map.yaml  (DRAFT 2026-10-03)
+# ClinicalTrials.gov MCP（Cowork/Claude の "Clinical Trials" コネクタ）が返す欄と、
+# M11 の節への対応。2026-10-03 に NCT05398445 で get_trial_details / analyze_endpoints を
+# 実際に呼んで確かめた欄だけを書く（欄が増減したら測り直す）。
+#
+# 実測の要点（NCT05398445, 参照プロトコル Amendment 6 との比較）:
+#  - 返る: 題名・略称・状態・相・疾患・介入名・スポンサー・実登録数(769)・日付・
+#          brief_summary(108字)・適格基準(1,156字)・年齢/性別・評価項目(主2/副28, 説明つき)・
+#          施設(202 施設 / 21 か国)・has_results(true)
+#  - 返らない: 群(arm group)・用量/投与法・割付比・層別・盲検・detailed_description(null)・
+#          結果の数値（has_results=true でも値は無い）・プロトコル/SAP 文書へのリンク
+#  - 適格基準の量: CTG は選択 6 項目・除外 3 項目（下位 10 行）。
+#          プロトコルは選択 12 項目（うち 2 項目は黒塗り）・除外 30 項目。
+#          → CTG だけでは選択の約半分、除外の約 1 割しか埋まらない。残りは PACK と STD で肉付け。
+#  - 評価項目: CTG の説明文には、プロトコルで黒塗りの閾値（PRO の 4 点改善、HADS<8、
+#          SCORAD 8.7 点 等）と中間事象の扱い（rescue＝以後非反応、連続量は WOCF）が書かれていた。
+#          → 評価項目と estimand の起点として CTG は強い。
+
+tools:
+  get_trial_details: {returns: "trial オブジェクト（下の fields）", use: "参照試験 1 本ずつの事実"}
+  analyze_endpoints: {returns: "primary/secondary/other_endpoints（measure, time_frame, description, type）と common_measures", use: "nct_id で 1 本、condition+phase で横断（同じ疾患の第3相で何が標準か）"}
+  search_trials: {use: "参照試験の候補探し（condition, intervention, phase, status）"}
+  search_by_eligibility: {use: "適格基準の言い回しの横断比較（eligibility_keywords）"}
+
+fields:
+  title:                {m11: [TP.full_title], label: CTG, note: "参照試験の題名。新試験の題名は USER の薬剤名で書き直す（形式だけ借りる）"}
+  brief_title:          {m11: [TP.short_title_acronym], label: CTG}
+  acronym:              {m11: [TP.short_title_acronym], label: CTG}
+  status:               {m11: [], note: "参照試験の選別にだけ使う"}
+  phase:                {m11: [TP.phase, "4.1"], label: CTG}
+  study_type:           {m11: ["4.1"], label: CTG}
+  conditions:           {m11: ["2.1", "5.1"], label: CTG}
+  interventions:        {m11: ["6.1"], label: CTG, note: "名前だけ。用量・経路・頻度は USER/TBD"}
+  sponsor:              {m11: [TP.sponsor_name_address], label: CTG, note: "参照試験のスポンサーを新試験に写さない"}
+  enrollment:           {m11: ["10.11"], label: CTG, note: "実登録数。新試験の例数ではなく『同規模の先例』として 10.11 の根拠欄に"}
+  start_date:           {m11: [], note: "参照の新しさの判定"}
+  primary_completion_date: {m11: []}
+  completion_date:      {m11: []}
+  brief_summary:        {m11: ["2.1"], label: CTG, note: "短い（100字程度のことがある）。2.1 の骨子のみ"}
+  detailed_description: {m11: ["2.1", "4.2"], label: CTG, note: "null のことがある"}
+  eligibility_criteria: {m11: ["5.2", "5.3"], label: CTG, note: "要旨。各項目を PACK の操作的定義で完全な文にし、足りない区分は PACK:exclusion で補う"}
+  minimum_age:          {m11: ["5.2"], label: CTG}
+  maximum_age:          {m11: ["5.2"], label: CTG}
+  sex:                  {m11: ["5.2"], label: CTG}
+  healthy_volunteers:   {m11: ["5.1"], label: CTG}
+  primary_outcomes:     {m11: ["3.1", "1.1", "1.3", "10.4"], label: CTG, note: "measure/time_frame/description。description の中の中間事象の扱いは 3.1 の estimand の起点"}
+  secondary_outcomes:   {m11: ["3.2", "1.3", "10.5"], label: CTG, note: "key secondary（多重性管理下）か否かは CTG に無い → PACK と USER で決める"}
+  other_outcomes:       {m11: ["3.3"], label: CTG}
+  locations:            {m11: ["4.1", "6.7", "12.country_specific_requirements"], label: CTG, note: "国の集計だけ使う（施設名・連絡先は写さない）。地域の層別（例: 日本/日本以外のアジア/その他）の根拠"}
+  url:                  {m11: ["14"], label: CTG}
+  has_results:          {m11: [], note: "true でも数値は返らない。例数の仮定は PRIOR から"}
+
+not_available_from_mcp:
+  - {item: "群・用量・投与間隔・負荷投与", source: USER}
+  - {item: "割付比・層別因子・盲検の方法", source: [USER, PACK]}
+  - {item: "評価スケジュール（来院の週）", source: [CTG:time_frame から主要時点のみ, PACK:soa_rows]}
+  - {item: "救済療法・禁止薬の規則", source: PACK}
+  - {item: "例数の仮定（反応率）", source: PRIOR}
+  - {item: "安全性監視・AESI・中止規則", source: [PACK, STD]}

@@ -1,0 +1,5 @@
+# scripts/ の依存の和（2026-10-04）。正典は各 script の頭の PEP 723 ブロック（uv run がそれを読む）。
+# uv を使わない環境向け: pip install -r scripts/requirements.txt
+pyyaml>=6        # check_protocol.py, validate_pack.py
+scipy>=1.11      # sample_size.py
+numpy>=1.24      # sample_size.py

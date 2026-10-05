@@ -1,0 +1,5 @@
+{
+  "ETDRS BCVA": {"version": null, "version_source": null, "license_holder": null, "license_required": null, "checked_on": "2026-10-04", "seen_in_reference": "NCT04423718/NCT02307682/NCT04270747: ETDRS chart at 4 m（当時の版は CTG に無し）", "note": "[TBD: ETDRS BCVA chart/protocol version — checked 2026-10-04, not confirmed]"},
+  "NEI VFQ-25": {"version": "Version 2000 (interviewer-administered format dated January 2000)", "version_source": "https://www.rand.org/content/dam/rand/www/external/health/surveys_tools/vfq/vfq25survey_intadmin.pdf (RAND 掲載。検索結果の抜粋で確認)", "license_holder": "RAND（National Eye Institute の後援）", "license_required": false, "license_note": "検索結果の抜粋では、RAND は条件つきで追加の書面許可なしに使用可（クレジット表記が必要）。原文での確認は未了", "checked_on": "2026-10-04", "seen_in_reference": "NCT04423718: NEI-VFQ-25 total score（版の記載なし）"},
+  "SD-OCT central subfield thickness": {"version": null, "note": "機器・読影センターの規定はスポンサーが決める。[TBD]", "checked_on": "2026-10-04"}
+}

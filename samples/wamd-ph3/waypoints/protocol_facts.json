@@ -1,0 +1,275 @@
+{
+  "design": {
+    "phase": 3,
+    "type": "randomized, double-masked (double-dummy), active-controlled, parallel-group, non-inferiority; maintenance therapy after aflibercept induction",
+    "archetype": {
+      "endpoint": "binary_responder (event-free proportion; composite for rescue)",
+      "comparison": "non_inferiority",
+      "family": "ophthalmology"
+    },
+    "arms": [
+      {
+        "id": "A",
+        "name": "XYZ-123 ophthalmic solution",
+        "regimen": "0.5% once daily (QD) topical to the study eye from randomization (Week 0) through Week 52 [dose provisional; TBD]",
+        "masking_double_dummy": "sham intravitreal procedure at visits when aflibercept injection would be due in Arm B",
+        "src": "USER (XYZ-123 eye drop); dose: DERIVED from USER:P2-release (D5)"
+      },
+      {
+        "id": "B",
+        "name": "Aflibercept 8 mg intravitreal injection",
+        "regimen": "All participants: 3 induction injections 4 weeks apart (±7 days) in run-in; then maintenance 8 to 16 weeks apart (±1 week) according to visual and anatomic findings (masked assessment) through Week 52",
+        "masking_double_dummy": "vehicle eye drops at the same frequency as Arm A",
+        "src": "USER; label-consistent (Eylea HD PI search excerpt)"
+      }
+    ],
+    "ratio": "1:1",
+    "blinding": "double-masked",
+    "strata": [
+      "geographic region (US, EU, Japan)",
+      "baseline BCVA (<64 letters, ≥64 letters)"
+    ],
+    "periods": {
+      "screening_days": "[TBD]",
+      "run_in_weeks": 12,
+      "run_in_note": "aflibercept 8 mg at Run-in Week 0, 4, 8; randomization at Run-in Week 12 (= Week 0)",
+      "treatment_weeks": 52,
+      "primary_timepoint_week": 48,
+      "follow_up_weeks": "[TBD] (Week 56 safety follow-up visit)",
+      "extension": "[TBD]"
+    },
+    "regions": [
+      "US",
+      "EU",
+      "Japan"
+    ],
+    "src": {
+      "arms": "USER + DERIVED(D1,D5)",
+      "ratio": "USER",
+      "periods": "USER(48) + DERIVED(52 for ICH E1, D2)",
+      "strata": "CTG:NCT04270747 + DERIVED",
+      "type": "USER + USER:P2-release"
+    }
+  },
+  "population": {
+    "summary": "Neovascular Age-Related Macular Degeneration, 50 years and older (Adult, Older Adult), with good response to aflibercept induction [USER; USER:P2-release]",
+    "inclusion": "disease_pack_draft.yaml inclusion + run-in response criteria [TBD]",
+    "exclusion": "disease_pack_draft.yaml exclusion + ocular surface disease",
+    "washout_table": "disease_pack_draft.yaml prior_therapy_washout"
+  },
+  "endpoints": [
+    {
+      "id": "P1",
+      "level": "primary",
+      "text": "Reduction of 15 or more letters in BCVA (Best corrected visual acuity) as measured by ETDRS visual acuity chart from baseline Week 48",
+      "timepoint": "Week 48",
+      "type": "binary",
+      "src": "USER",
+      "note": "Participants who receive rescue therapy by Week 48 are counted as having the event (composite strategy, D3)."
+    },
+    {
+      "id": "KS1",
+      "level": "key_secondary",
+      "text": "Proportion of participants with a 15-letter or greater BCVA loss from baseline or rescue therapy at any time from Week 8 to Week 52",
+      "timepoint": "Week 52",
+      "type": "binary",
+      "src": "USER:P2-release (P2 primary)"
+    },
+    {
+      "id": "KS2",
+      "level": "key_secondary",
+      "text": "Time to first occurrence of a 15-letter or greater BCVA loss from baseline or rescue therapy through Week 52",
+      "timepoint": "Week 52",
+      "type": "time_to_event",
+      "src": "USER:P2-release (Kaplan-Meier)"
+    },
+    {
+      "id": "KS3",
+      "level": "key_secondary",
+      "text": "Change from baseline in BCVA (ETDRS letters) at Week 48",
+      "timepoint": "Week 48",
+      "type": "continuous",
+      "src": "CTG:NCT04423718, NCT02307682; PREC:Rani:s13/Q1b"
+    },
+    {
+      "id": "KS4",
+      "level": "key_secondary",
+      "text": "Change from baseline in central subfield thickness (CST) by SD-OCT at Week 48",
+      "timepoint": "Week 48",
+      "type": "continuous",
+      "src": "CTG:5/5; USER:P2-release"
+    },
+    {
+      "id": "KS5",
+      "level": "key_secondary",
+      "text": "Proportion of participants with no intraretinal fluid and no subretinal fluid in the central subfield at Week 48",
+      "timepoint": "Week 48",
+      "type": "binary",
+      "src": "CTG:NCT04423718"
+    },
+    {
+      "id": "S1",
+      "level": "secondary",
+      "text": "Proportion of participants with a reduction of 15 or more letters in BCVA compared with the best BCVA recorded before Week 48 or rescue therapy through Week 48",
+      "timepoint": "Week 48",
+      "type": "binary",
+      "src": "PREC:Rani:s13/Q1f"
+    },
+    {
+      "id": "S2",
+      "level": "secondary",
+      "text": "Change from baseline in NEI VFQ-25 total score at Week 48",
+      "timepoint": "Week 48",
+      "type": "continuous",
+      "src": "CTG:NCT04423718; INSTR:NEI VFQ-25:2026-10-04"
+    },
+    {
+      "id": "SAF1",
+      "level": "safety",
+      "text": "Ocular and non-ocular treatment-emergent adverse events, including dry eye and punctate keratitis",
+      "timepoint": "through Week 56",
+      "type": "safety",
+      "src": "CTG; USER:P2-release; STD"
+    }
+  ],
+  "estimands": {
+    "intercurrent_events": [
+      {
+        "ice": "Rescue therapy for nAMD (aflibercept 8 mg outside the masked schedule)",
+        "strategy": "composite",
+        "src": "USER:P2-release + PREC:Rani:s13/Q1f"
+      },
+      {
+        "ice": "Permanent discontinuation of randomized treatment without rescue",
+        "strategy": "treatment policy",
+        "src": "PREC:Rani:s13/Q1i"
+      },
+      {
+        "ice": "Other prohibited nAMD treatment in the study eye",
+        "strategy": "composite",
+        "src": "DERIVED"
+      }
+    ],
+    "supportive": [
+      "hypothetical strategy for rescue [CTG:NCT04423718 used 'mainly hypothetical']",
+      "trimmed mean for continuous secondary (BCVA) [PREC:Rani:s13/Q1i]"
+    ],
+    "population_level_summary": "difference in proportions (XYZ-123 minus aflibercept 8 mg) with stratified Newcombe one-sided 97.5% upper confidence bound compared with the NI margin [TBD] [CTG:NCT04270747 method]"
+  },
+  "rescue": [
+    {
+      "therapy": "Intravitreal aflibercept 8 mg given outside the masked schedule when protocol-defined rescue criteria are met [criteria TBD]",
+      "ip_action": "Continue randomized treatment and all visits [DERIVED, TBD]",
+      "estimand_ice": "Rescue therapy for nAMD (aflibercept 8 mg outside the masked schedule)",
+      "src": "DERIVED; PREC:Rani:s13/Q1f"
+    },
+    {
+      "therapy": "Other nAMD therapy in the study eye (other anti-VEGF, PDT, vitrectomy)",
+      "ip_action": "Discontinue randomized treatment in the study eye? [TBD]",
+      "estimand_ice": "Other prohibited nAMD treatment in the study eye",
+      "src": "DERIVED"
+    }
+  ],
+  "multiplicity": {
+    "primary": "single primary non-inferiority test (one-sided alpha 0.025)",
+    "key_secondary_order": [
+      "KS1",
+      "KS2",
+      "KS3",
+      "KS4",
+      "KS5"
+    ],
+    "method": "fixed-sequence testing of key secondaries only if non-inferiority is shown [DERIVED]",
+    "src": "STD"
+  },
+  "sample_size": {
+    "see": "waypoints/sample_size.json",
+    "final_n_total": 668,
+    "driven_by": "safety exposure (ICH E1 / FDA precedent)",
+    "per_arm": 334,
+    "primary_NI": "[TBD] margin",
+    "note": "provisional lower bound; primary NI may require more"
+  },
+  "soa": {
+    "visits": [
+      {
+        "name": "Screening",
+        "week": "[TBD]"
+      },
+      {
+        "name": "Run-in Week 0 (Day 1)",
+        "week": "-12"
+      },
+      {
+        "name": "Run-in Week 4",
+        "week": "-8"
+      },
+      {
+        "name": "Run-in Week 8",
+        "week": "-4"
+      },
+      {
+        "name": "Week 0 (Randomization)",
+        "week": 0
+      },
+      {
+        "name": "Week 4",
+        "week": 4
+      },
+      {
+        "name": "Week 8",
+        "week": 8
+      },
+      {
+        "name": "Week 12",
+        "week": 12
+      },
+      {
+        "name": "Week 16",
+        "week": 16
+      },
+      {
+        "name": "Week 20",
+        "week": 20
+      },
+      {
+        "name": "Week 24",
+        "week": 24
+      },
+      {
+        "name": "Week 28",
+        "week": 28
+      },
+      {
+        "name": "Week 32",
+        "week": 32
+      },
+      {
+        "name": "Week 36",
+        "week": 36
+      },
+      {
+        "name": "Week 40",
+        "week": 40
+      },
+      {
+        "name": "Week 44",
+        "week": 44
+      },
+      {
+        "name": "Week 48 (primary)",
+        "week": 48
+      },
+      {
+        "name": "Week 52 (End of Treatment)",
+        "week": 52
+      },
+      {
+        "name": "Week 56 (Safety Follow-up)",
+        "week": 56
+      }
+    ],
+    "rows": "disease_pack_draft.yaml soa_rows"
+  },
+  "design_changes": "waypoints/design_decisions.md (D1-D13)"
+}

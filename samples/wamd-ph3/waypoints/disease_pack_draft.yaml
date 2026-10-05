@@ -1,0 +1,201 @@
+meta:
+  disease: neovascular_amd
+  aliases:
+  - neovascular age-related macular degeneration
+  - nAMD
+  - wet AMD
+  - wAMD
+  - 滲出型加齢黄斑変性
+  therapeutic_area_family: ophthalmology
+  endpoint_archetype: continuous_change
+  population_default: '50 歳以上の nAMD（study eye に活動性の CNV）。src: CTG:NCT04423718 ほか 5/5 で min_age 50 Years'
+  design_default: randomized, double-masked, active-controlled, parallel-group（CTG probe 5/5 RANDOMIZED・PARALLEL。盲検は DOUBLE 以上）
+  primary_timepoint_default: Week 48（4/5 本が Week 48 前後。ABP 938 は Week 8 [バイオシミラー型]。TALON は Week 28/32）
+  status: draft
+inclusion:
+- key: age
+  text: Age ≥ 50 years
+  src: CTG:NCT04423718
+  agreement: 5/5
+- key: cnv
+  text: Active CNV secondary to nAMD in the study eye (subfoveal/juxtafoveal affecting central subfield)
+  src: CTG:NCT04423718
+  agreement: 5/5
+- key: fluid
+  text: IRF and/or SRF affecting the central subfield on OCT
+  src: CTG:NCT04423718
+  agreement: 4/5
+- key: bcva
+  text: BCVA ETDRS letter score range [options]
+  define: 範囲は参照試験で割れる → options
+  options:
+  - 78–24 (CTG:NCT04423718)
+  - 78–23 (CTG:NCT02307682)
+  - 73–34 (CTG:NCT04270747)
+  - 83–38 (CTG:NCT04005352)
+  - 78–35 (CTG:NCT06856577)
+  src: CTG
+  agreement: 割れた（5 通り）→ 既定なし [TBD]
+- key: naive
+  text: Treatment-naïve in the study eye (no prior anti-VEGF or other nAMD treatment)
+  src: CTG:NCT04423718
+  agreement: 4/5（ARTEMIS は治療経験者を含む）
+- key: cnv_pct
+  text: CNV > 50% of total lesion area
+  src: CTG:NCT04423718
+  agreement: 3/5（NCT02307682, NCT04423718, NCT04270747 は 50% 基準）
+- key: eyedrops
+  text: Able to reliably use eye drops per protocol
+  src: CTG:NCT06856577
+  agreement: 1/5（点眼試験に必要。USER の点眼投与から DERIVED でも要る）
+exclusion:
+  medical:
+  - text: 'Uncontrolled hypertension (options: SBP >160 / DBP >95 [CTG:NCT04423718]; DBP >100 [CTG:NCT06856577])'
+    src: CTG
+  - text: 'Stroke or myocardial infarction within a defined period before baseline (options: 90 days [CTG:NCT02307682]; 3 months [CTG:NCT04270747]; 6 months [CTG:NCT04005352, NCT06856577])'
+    src: CTG
+  - text: Pregnancy/breastfeeding; contraception per local regulation (not applicable to most patients ≥50 y)
+    src: CTG:NCT02307682
+  - text: Active systemic infection; malignancy; clinically significant systemic disease
+    src: STD
+  prior_therapy_washout:
+  - class: Prior anti-VEGF or other nAMD treatment in the study eye
+    washout: any prior (naïve required)
+    src: CTG:NCT04423718
+  - class: Other investigational drug
+    washout: 'options: 30 days or 5 half-lives [CTG:NCT04270747]; 3 months [CTG:NCT06856577]'
+    src: CTG
+  other:
+  - text: Scar, fibrosis, or atrophy involving the central subfield / fovea in the study eye
+    src: CTG:NCT04423718
+  - text: RPE tear/rip involving the macula in the study eye
+    src: CTG:NCT04423718
+  - text: Other cause of CNV (incl. myopia ≥ 8 D)
+    src: CTG:NCT04423718
+  - text: Active ocular/periocular infection or intraocular inflammation (either eye)
+    src: CTG:NCT04423718
+  - text: 'Uncontrolled glaucoma (options: IOP >25 mmHg [CTG:NCT04423718]; ≥25 [CTG:NCT04270747])'
+    src: CTG
+  - text: History of uveitis; DR/DME or other retinal vascular disease in either eye
+    src: CTG:NCT04423718
+  - text: Vitreous hemorrhage within 4 weeks before baseline (study eye)
+    src: CTG:NCT02307682
+  - text: Hypersensitivity to aflibercept, IP or excipients; ocular surface disease/corneal conditions that preclude eye-drop use [DERIVED]
+    src: CTG:NCT04270747 + DERIVED
+endpoints:
+  primary:
+    default: 'Change from baseline in BCVA (ETDRS letters) at Week 48 [CTG: 4/5 の主要。PREC:Rani:s13/Q1b, PREC:Brolu:s20/Q10]'
+    options:
+    - Average change over Weeks 36, 40, 44 [PREC:Rani:s13/Q1b]
+    - Average of Weeks 52 and 56 [CTG:NCT06856577]
+    - Percentage losing <15 letters (maintaining vision) [CTG:NCT04270747 は副次]
+    rules:
+    - ★USER は『Week 48 でベースラインから 15 文字以上の低下』（割合）を主要としている。先例・CTG はこれを主要とした例が無い（副次に在る）→ Step 2 の確認で決める
+  key_secondary:
+  - Change from baseline in BCVA at other timepoints / average over a window [CTG:NCT02307682, NCT04423718]
+  - Proportion gaining ≥15 letters [CTG:NCT04423718, NCT02307682, NCT04270747]
+  - Proportion with BCVA ≥ 69 (or ≥73) letters [CTG:NCT04423718, NCT02307682]
+  - 'Change in CST by SD-OCT [CTG: 5/5]'
+  - Proportion with no IRF and no SRF [CTG:NCT04423718]
+  - Number of aflibercept injections [CTG:NCT06856577]
+  other_secondary:
+  - NEI VFQ-25 total score [CTG:NCT04423718, NCT02307682, NCT04005352, NCT06856577]
+  - CNV lesion size by FA [CTG:NCT04423718, NCT02307682, NCT04270747]
+  exploratory: []
+  safety:
+  - 'Ocular and non-ocular TEAEs [CTG: 5/5]'
+  - 'Events of interest: endophthalmitis, retinal detachment, IOP increase, thromboembolic events [CTG:NCT04270747]'
+  - ADA（点眼薬では USER 次第）[CTG:NCT04423718]
+instruments:
+  ETDRS_BCVA:
+    rater: certified examiner
+    mode: ETDRS chart at 4 m
+    score: 0–100 letters
+    responder: loss/gain ≥15 letters [PREC:Rani:s2/p4c]
+    seen_version_in_reference: CTG:NCT04423718 (4 m)
+    notes: 版は Step 1f で未確認
+  NEI_VFQ25:
+    mode: self/interviewer
+    score: 0–100 composite
+    notes: 版 2000（RAND）。instrument_versions.json 参照
+rescue_table:
+  rows:
+  - therapy: IVT aflibercept per protocol rescue criteria
+    ip_action: '[TBD] 継続/中止'
+    estimand_ice: rescue
+    src: PREC:Rani:s13/Q1f（ranibizumab の救済は Q4W を可としたが、本試験の救済規則の先例は無い）
+  rules:
+  - '治療失敗の定義: 最良 BCVA からの 15 文字以上の低下 [PREC:Rani:s13/Q1f]'
+  - ★点眼薬の群で救済に硝子体内注射が要る場合の規則は先例が無い → [TBD]
+estimands:
+  intercurrent_events:
+  - ice: Rescue therapy / treatment failure
+    strategy: composite または treatment policy（USER 確認）
+    handling: FDA は trimmed mean を推奨 [PREC:Rani:s13/Q1i]
+    src: PREC:Rani:s13/Q1i
+  - ice: Discontinuation of IP
+    strategy: treatment_policy
+    handling: 全例を追跡 [PREC:Rani:s13/Q1i]
+    src: PREC:Rani:s13/Q1i
+  supportive_estimands:
+  - hypothetical (DERIVED)
+  population_level_summary: 'binary: difference in proportions（USER の主要評価項目に対応）／ continuous: difference in mean change'
+analysis:
+  primary: 'continuous: ANCOVA/MMRM (STD) ／ binary: stratified difference in proportions（USER）'
+  missing_data: '[TBD] 方法は archetype に従い、先例は trimmed mean [PREC:Rani:s13/Q1i]'
+  multiplicity: '[TBD] 先例の材料なし'
+  NI_margin: 'BCVA 変化量: 4 文字（片側 α 0.025、CTG 結果欄: NCT04423718, NCT02307682, NCT04005352 の 3/5）、先例 ≤4.5 文字 [PREC:Rani:s13/Q1b]、4 文字（条件つき）[PREC:Fari:s40/p49c]。ABP 938 は同等性 (−3, 3) 文字 [CTG:NCT04270747]。★15
+    文字低下の割合のマージンは先例なし [TBD]'
+  stratification_default:
+    options:
+    - geographic region (East Asia, Europe, North America) [CTG:NCT04270747]
+    - baseline BCVA (<64, ≥64) [CTG:NCT04270747]
+    - age (<75, ≥75) and baseline fluid status [CTG:NCT02307682]
+    agreement: 割れた → 既定なし
+  covariates: baseline BCVA [DERIVED]
+  subgroups:
+  - region (US/EU/Japan)
+  - baseline BCVA
+  - '[TBD]'
+sample_size_priors:
+  rule: 出典と取得日の無い値は入れない
+  candidates:
+  - source: CTG:NCT02307682 結果欄（取得 2026-10-04）
+    measure: ≥15 letter loss at Week 48, aflibercept 2 mg
+    value: 0.056
+  - source: CTG:NCT04270747 結果欄（取得 2026-10-04）
+    measure: vision maintained (lost <15 letters) at Week 52, aflibercept/aflibercept = 97.6% → loss 2.4% [DERIVED]
+    value: 0.024
+  - source: CTG:NCT04423718 結果欄（取得 2026-10-04）
+    measure: ≥15 letter gain at Week 48, 2q8 / HDq12 / HDq16
+    value:
+    - 0.221
+    - 0.207
+    - 0.217
+    note: aflibercept 8 mg の低下率は結果欄に無い
+safety_monitoring:
+  aesi_candidates_by_mechanism:
+  - '点眼: 眼表面の刺激・角膜障害・IOP [DERIVED]'
+  - '硝子体内注射（対照・sham）: endophthalmitis, retinal detachment, IOP 上昇, 眼内炎症 [CTG:NCT04270747]'
+  - '全身（VEGF 阻害）: 動脈血栓塞栓事象 [CTG:NCT04270747 の EOI]'
+  - 'VEGFR 阻害薬の点眼: 眼表面・角膜の障害、創傷治癒の遅延、眼圧、局所の充血・刺激 [DERIVED]。全身曝露（VEGF 経路阻害の血圧・蛋白尿・血栓・出血）の PK 確認 [DERIVED]。点眼で全身曝露が低いことは用量・PK データ待ち [TBD]'
+soa_rows:
+- Informed consent
+- Eligibility
+- Demographics/medical history
+- Vital signs and blood pressure
+- BCVA (ETDRS)
+- SD-OCT
+- Fundus photography/FA
+- IOP
+- Slit-lamp exam and fluorescein corneal staining
+- Ocular surface symptoms
+- Hematology/chemistry/urinalysis
+- Pregnancy test (WOCBP)
+- AE/concomitant medications
+- Aflibercept 8 mg or sham injection
+- XYZ-123 or vehicle eye drops dispensing and diary review
+- Rescue assessment
+- NEI VFQ-25
+- Plasma PK sample
+- ADA sample [TBD]

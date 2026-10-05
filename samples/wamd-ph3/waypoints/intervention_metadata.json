@@ -1,0 +1,73 @@
+{
+  "intervention_id": "wamd-ph3",
+  "intervention_type": "drug",
+  "indication_key": "neovascular_amd",
+  "indication_input": "wAMD",
+  "disease_pack": "draft",
+  "precedents": "precedents/neovascular_amd/",
+  "user_design": {
+    "product_name": "XYZ-123",
+    "modality_mechanism": "VEGFR (Vascular Endothelial Growth Factor Receptor) inhibitor, eye drop (点眼製剤)",
+    "indication_population": "Neovascular Age-Related Macular Degeneration, 50 years and older (Adult, Older Adult)",
+    "phase": 3,
+    "design": "randomized, double-masked, active-controlled, parallel-group (盲検の具体策[ダブルダミー等]は [TBD])",
+    "arms": [
+      {
+        "name": "試験薬 点眼",
+        "regimen": "eye drop for 44 weeks until end of the trial; 用量・頻度 [TBD]"
+      },
+      {
+        "name": "aflibercept 8 mg",
+        "regimen": "導入期: 4週間に1回(±7日)で最初の3回。維持期: 視力および解剖学的所見に応じて8〜16週間に1回(±1週間)"
+      }
+    ],
+    "allocation_ratio": "1:1",
+    "blinding": "double-masked",
+    "treatment_period_weeks": 52,
+    "primary_timepoint_week": 48,
+    "follow_up_weeks": null,
+    "extension": null,
+    "regions": [
+      "US",
+      "EU",
+      "Japan"
+    ],
+    "stratification": null,
+    "primary_endpoint_choice": "Reduction of 15 or more letters in BCVA (ETDRS chart) from baseline at Week 48",
+    "comparison": "non-inferiority vs aflibercept 8 mg (NI margin [TBD])",
+    "sample_size_inputs": {
+      "power": 0.9,
+      "alpha_two_sided": 0.05,
+      "dropout": 0.1,
+      "note": "既定値（利用者未記入）"
+    },
+    "reference_nct_ids": [],
+    "sponsor_info": null,
+    "ib_known_risks": null,
+    "design_changes": "design_decisions.md",
+    "phase2_release": "USER-supplied news release (fictionalized as XYZ-123 Phase 2); label [USER:P2-release]"
+  },
+  "initial_context": "利用者の指定: 試験薬は点眼、対照は aflibercept 8 mg、非劣性、1:1、二重盲検、44週投与、Week 48 主要評価、US/EU/Japan。",
+  "created_date": "2026-10-04",
+  "completed_steps": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "reference_nct_ids": [
+    "NCT04423718",
+    "NCT02307682",
+    "NCT04270747",
+    "NCT04005352",
+    "NCT06856577"
+  ],
+  "env": {
+    "ctg_mcp": true,
+    "ctg_comm": true,
+    "uv": true,
+    "rechecked": "2026-10-04"
+  },
+  "completed_date": "2026-10-04"
+}

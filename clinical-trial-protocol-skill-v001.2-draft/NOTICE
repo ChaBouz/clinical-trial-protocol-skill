@@ -1,0 +1,42 @@
+clinical-trial-protocol-skill v001.2-draft
+("v001.2" is this fork's own version name, chosen so it is not confused with Anthropic's versions.)
+Copyright 2026 Tad (modifications and additions)
+
+This work is a modified version (Derivative Work) of "clinical-trial-protocol-skill" v1.1.1,
+a sample skill published by Anthropic in the GitHub repository anthropics/life-sciences
+(https://github.com/anthropics/life-sciences), licensed under the Apache License, Version 2.0.
+This version is not an official Anthropic release and is not endorsed by Anthropic.
+Both the original and this version are distributed under the Apache License, Version 2.0 (see LICENSE).
+
+Files taken from v1.1.1 WITHOUT changes (byte-identical copies):
+  references/section_guides_v1.1.1/00-initialize-intervention.md   (from references/)
+  references/section_guides_v1.1.1/01-research-protocols.md        (from references/)
+  references/section_guides_v1.1.1/02-protocol-foundation.md       (from references/)
+  references/section_guides_v1.1.1/03-protocol-intervention.md     (from references/)
+  references/section_guides_v1.1.1/04-protocol-operations.md       (from references/)
+  references/section_guides_v1.1.1/05-concatenate-protocol.md      (from references/)
+  scripts/legacy_sample_size_calculator.py                          (from scripts/sample_size_calculator.py)
+  assets/NIH-FDA-Protocol-Template_STD-library.md                   (from assets/FDA-Clinical-Protocol-Template.md;
+                                                                     the NIH-FDA Phase 2/3 IND/IDE clinical trial protocol template)
+
+Files MODIFIED from v1.1.1 (rewritten by Tad in 2026; each carries a notice at its top):
+  SKILL.md
+  README.md
+
+All other files were newly written for v001.2 by Tad in 2026.
+The detailed history of changes is in CHANGELOG.md.
+
+How this version was made:
+  This version was created and modified by Tad through conversations with Claude (Cowork).
+  The accuracy and safety of the instructions, scripts, and outputs have not been fully verified.
+  Review everything before use; any protocol drafted with it must be reviewed by qualified experts.
+
+Data included:
+  precedents/neovascular_amd/ contains verbatim excerpts of FDA correspondence published in
+  Drugs@FDA (Administrative and Correspondence Documents), extracted with the author's own tool.
+  The "抽出元" (source) lines refer to the author's private extraction files, which are not distributed.
+
+Third-party material referenced:
+  ICH M11 (Clinical electronic Structured Harmonised Protocol) section structure is used as the outline
+  (assets/section_spec_m11.yaml). ICH guidelines are published by the International Council for
+  Harmonisation of Technical Requirements for Pharmaceuticals for Human Use (ICH).

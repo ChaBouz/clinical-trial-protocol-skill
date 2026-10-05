@@ -1,0 +1,44 @@
+# disease_packs/_schema.yaml  (DRAFT 2026-10-03)
+# 疾患パックの形。どの適応症でもこの形で書く（中身は疾患ごと）。
+# 手で作った確定版のパック（例: atopic_dermatitis.yaml）が無い適応症では、
+# Step 1e がこの形の「下書きパック」を waypoints/disease_pack_draft.yaml に作る。
+#
+# 全項目の共通規則:
+#   - 各値に src を付ける（CTG:<NCT> / PREC:<id> / PI:<label> / GUIDANCE:<名前> / STD / DERIVED）
+#   - 下書きパックでは、CTG 由来の値に「何本中何本の参照試験で同じか」を付ける（agreement: "4/5"）
+#   - 数値の閾値は、参照試験の過半数で一致したものだけ既定値にする。割れたら options に並べる
+
+required:
+  meta:
+    disease: "snake_case の名前（ファイル名・Step 0 の indication_key・precedents/ のフォルダ名と同じ）"
+    therapeutic_area_family: "design_archetypes.yaml の therapeutic_area_families のキー（oncology など）"
+    endpoint_archetype: "design_archetypes.yaml の endpoint_types のキー（binary_responder など）"
+    population_default: "対象集団の 1 文"
+    design_default: "設計の 1 文"
+    primary_timepoint_default: "例 Week 16 / event-driven"
+    status: "confirmed（人が確認済み）| draft（Step 1e が作った）"
+  inclusion: "[{key, text, define?, src, agreement?}]  疾患の診断・重症度・前治療の失敗・症状の下限・遵守条件"
+  exclusion:
+    medical: "[{text, src}]  疾患に依らない区分（感染・悪性腫瘍・心血管・検査値・精神・妊娠）は STD から補う"
+    prior_therapy_washout: "[{class, washout, src}]  表にする"
+    other: "[{text, src}]"
+  endpoints:
+    primary: "{default, options?, rules[]}"
+    key_secondary: "[...]  多重性管理下。4–6 個"
+    other_secondary: "[...]"
+    exploratory: "[...]"
+    safety: "[...]"
+  instruments: "{尺度名: {rater/mode, recall, score, responder, notes, seen_version_in_reference}}  ★版の最新は Step 1f で毎回確かめる（パックに最新版を固定しない）"
+  rescue_table: "{rows: [{therapy, ip_action, estimand_ice, src}], rules: [...]}  救済療法の概念が無い疾患（例 腫瘍）は rows: [] で可"
+  estimands: "{intercurrent_events: [{ice, strategy, handling, src}], supportive_estimands: [...], population_level_summary}"
+  analysis: "{primary, missing_data, multiplicity, stratification_default, covariates, subgroups}"
+  sample_size_priors: "{rule, candidates: [{source, 値…}]}  公表結果。出典と取得日が無い値は入れない"
+  safety_monitoring: "{aesi_candidates_by_mechanism, 疾患特有の監視}"
+  soa_rows: "[行の名前]"
+optional:
+  meta.aliases: "[別名]  同じ適応症の別の呼び方（英語・日本語・略号）。Step 0 で利用者の言葉と完全一致で照合する（scripts/list_indications.py）。広すぎる語は入れない"
+  terminology: "略語と尺度の説明"
+  background_therapy: "基礎治療・併用の決まり"
+  appendix_tables: "付録に載せる表"
+  pediatric: "小児・青年を含めるときの規則（PK 部分試験・体重別用量・年齢区分）"
+  regional: "国・地域ごとの注意（日本人部分集団 等）"

@@ -1,0 +1,20 @@
+{
+  "rule": "final N = max(components)",
+  "components": [
+    {
+      "component": "pc0.056_m0.10",
+      "kind": "ni_binary",
+      "n_total": 249,
+      "source": "runs/wamd-ph3/waypoints/ss/pc0.056_m0.10.json"
+    },
+    {
+      "component": "safety exposure allocated to this trial",
+      "kind": "exposure",
+      "n_total": 668,
+      "status": "allocated",
+      "source": "ICH E1 (>=100 for 1 yr) and FDA precedent PREC:Rani:s13/Q3 (>=300 with >=12 months): 300 XYZ-123 completers at Week 52 / 0.90 = 334 per arm, 1:1 -> 668"
+    }
+  ],
+  "final_n_total": 668,
+  "driven_by": "safety exposure allocated to this trial"
+}

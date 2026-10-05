@@ -1,0 +1,113 @@
+# design_archetypes.yaml  (DRAFT 2026-10-03)
+# 適応症に依存しない「設計の型」。主要評価項目の型と比較の型から、
+# estimand の雛形・解析・欠測・多重性・例数計算のコマンドを決める。
+# 疾患パック（または Step 1 で作る下書きパック）は、ここに「疾患の中身」を差し込むだけ。
+#
+# 使い方: Step 2 で protocol_facts.json の endpoints[].type と design.comparison から
+#         該当する archetype を選び、facts.analysis に写す（ラベル [STD]）。
+
+endpoint_types:
+
+  binary_responder:
+    examples: ["皮膚・リウマチ・IBD の寛解/反応率", "症状スコアの閾値改善"]
+    summary_measure: "difference in proportions (and/or odds ratio)"
+    primary_analysis: "CMH test stratified by randomization strata"
+    ice_templates:
+      - {ice: "Initiation of rescue / prohibited therapy affecting the endpoint", strategy: composite, handling: "non-responder from ICE onward"}
+      - {ice: "Permanent discontinuation of IP (without rescue)", strategy: treatment_policy, handling: "use data collected after discontinuation"}
+    missing_data: {primary: "non-responder imputation (NRI) for remaining missing", sensitivity: ["multiple imputation (method, m, seed prespecified)", "tipping-point"]}
+    sample_size: "scripts/sample_size.py binary|coprimary --missing nri"
+
+  continuous_change:
+    examples: ["HbA1c・血圧・肺機能・認知スケールの変化量"]
+    summary_measure: "difference in mean change from baseline at the primary timepoint"
+    primary_analysis: "ANCOVA at the primary timepoint (strata + baseline); MMRM as supportive or as primary when justified"
+    ice_templates:
+      - {ice: "Initiation of rescue therapy", strategy: "hypothetical or composite (WOCF/BOCF)", handling: "choose per disease; justify"}
+      - {ice: "Permanent discontinuation of IP", strategy: treatment_policy, handling: "retrieved dropouts; reference-based MI for missing"}
+    missing_data: {primary: "MI (retrieved-dropout or reference-based)", sensitivity: ["tipping-point (delta adjustment)", "MMRM under MAR"]}
+    sample_size: "scripts/sample_size.py continuous --delta --sd"
+
+  time_to_event:
+    examples: ["腫瘍の PFS/OS", "心血管イベント", "再発までの時間"]
+    summary_measure: "hazard ratio (and median/RMST as supportive)"
+    primary_analysis: "stratified log-rank test; stratified Cox model for HR"
+    ice_templates:
+      - {ice: "Start of new anticancer / subsequent therapy", strategy: "treatment_policy (OS) or while-on-treatment/composite (PFS) per FDA/EMA guidance", handling: "censoring rules prespecified"}
+      - {ice: "Treatment discontinuation", strategy: treatment_policy, handling: "continue follow-up for events"}
+    missing_data: {primary: "censoring rules (last adequate assessment)", sensitivity: ["alternative censoring", "IPCW if informative censoring suspected"]}
+    sample_size: "scripts/sample_size.py tte --hr --alloc --events-only|--median-control --accrual --follow-up"
+    notes: ["event-driven: 解析時期は事象数で決める", "中間解析は alpha-spending（O'Brien-Fleming 等）"]
+
+  count_rate:
+    examples: ["喘息増悪の年間発生率", "片頭痛日数"]
+    summary_measure: "rate ratio"
+    primary_analysis: "negative binomial regression with log(exposure) offset"
+    missing_data: {primary: "use all observed exposure; treatment policy", sensitivity: ["reference-based MI for unobserved period"]}
+    sample_size: "[TBD] 負の二項（この版の script は未対応 → 統計担当）"
+
+comparison_types:
+  superiority_placebo: {hypothesis: "H0: no difference vs placebo", alpha: "two-sided 0.05"}
+  superiority_active: {hypothesis: "H0: no difference vs active comparator", note: "比較薬は承認用法で使う（PREC 例: Abro s26/Q5）"}
+  non_inferiority: {hypothesis: "H0: inferior by ≥ margin", margin: "[TBD] 過去試験の効果からの根拠が必須（ICH E10, FDA NI guidance）", analysis_sets: "PP と FAS の両方"}
+  dose_ranging: {hypothesis: "dose-response (MCP-Mod 等)", note: "第2相向け"}
+
+multiplicity_patterns:
+  coprimary_conjunctive: "全主要評価項目が有意で成功。α の分割は不要（検出力は下がる → 同時検出力で例数を計算）"
+  multiple_doses: "用量ごとの比較の第1種の過誤を制御（Bonferroni/Holm/graphical）"
+  key_secondary: "固定順序 or graphical。表示を狙う副次は数を絞る"
+  interim: "時期・盲検維持・alpha-spending を事前規定"
+
+therapeutic_area_families:   # 疾患パックが無いときの既定の重み付け（spec の target_pages を上書き）
+  oncology:
+    endpoint_default: time_to_event
+    ae_grading: "NCI CTCAE v5.0"
+    emphasis: {"6.4": "dose modification tables by toxicity (3–6 pp)", "8.3": "tumor assessment per RECIST 1.1/iRECIST", "5.2": "ECOG, measurable disease, organ function table, prior lines"}
+  immunology_inflammation:
+    endpoint_default: binary_responder
+    ae_grading: "mild / moderate / severe（疾患特有の尺度があればそれ）"
+    emphasis: {"6.10": "rescue / prohibited therapy tables (3–4 pp)", "8.3": "investigator- and patient-reported scales, eDiary", "5.3": "washout table"}
+  cardiometabolic:
+    endpoint_default: continuous_change
+    ae_grading: "mild / moderate / severe"
+    emphasis: {"8.4": "ECG, labs, hypoglycemia/BP monitoring", "9": "adjudicated CV events (CEC) if applicable"}
+  neuroscience:
+    endpoint_default: continuous_change
+    ae_grading: "mild / moderate / severe"
+    emphasis: {"8.3": "rater training and inter-rater reliability", "8.4": "C-SSRS suicidality monitoring"}
+  respiratory:
+    endpoint_default: count_rate
+    ae_grading: "mild / moderate / severe"
+    emphasis: {"8.3": "spirometry standards (ATS/ERS), exacerbation definition"}
+  infectious_disease:
+    endpoint_default: binary_responder
+    ae_grading: "DAIDS or mild/moderate/severe"
+    emphasis: {"8.3": "microbiological response", "4.2": "NI margin justification"}
+  general:   # ★どの領域にも当たらないときの受け皿（2026-10-04）。重み付けを持たない。Step 1e は合う領域が無ければこれを選び、Step 2 の確認で伝える
+    endpoint_default: null
+    ae_grading: "mild / moderate / severe"
+    emphasis: {}
+  ophthalmology:   # 2026-10-04 追加（網膜疾患の硝子体内投与などを想定した一般的な既定。頁数の目安は持たない。要レビュー）
+    endpoint_default: continuous_change
+    ae_grading: "mild / moderate / severe（眼の事象は study eye と fellow eye を分けて記録）"
+    emphasis: {"5.2": "study eye selection rule; ocular inclusion/exclusion for study eye and fellow eye", "8.3": "BCVA with standardized letter charts and certified examiners; retinal imaging (e.g., OCT) graded by a central reading center", "8.4": "ocular safety: intraocular pressure around injection, intraocular inflammation, endophthalmitis, retinal vasculitis/vascular occlusion"}
+
+safety_exposure:   # 例数の決め方に入れる安全性曝露（10.11）
+  ich_e1:
+    scope: "long-term treatment (chronic or recurrent intermittent use, >=6 months) of non-life-threatening conditions"
+    total_exposed_program: 1500        # 'about 1500' including short-term exposure
+    six_month_exposure: "300-600"      # 'Usually 300-600 patients should be adequate'
+    one_year_exposure: 100             # '100 patients exposed for a minimum of one-year'
+    dose: "at dosage levels intended for clinical use"
+    source: "ICH E1 (1994), FDA/EMA step 5; checked 2026-10-03"
+    note: "目標は開発プログラム全体の数。1 試験の例数そのものではない。延長試験（LTE）を含めて、この試験がどれだけ寄与するかを 10.11 に書く"
+  applicability_by_family:
+    oncology: {ich_e1: false, reason: "生命を脅かす疾患は ICH E1 の対象外。安全性は試験全体の曝露と用量調整で評価する"}
+    immunology_inflammation: {ich_e1: true}
+    cardiometabolic: {ich_e1: true, note: "心血管アウトカムの安全性要件（例 糖尿病薬）が別にありうる → [TBD]"}
+    neuroscience: {ich_e1: true}
+    respiratory: {ich_e1: true}
+    infectious_disease: {ich_e1: false, reason: "短期投与が多い。長期投与なら true"}
+    ophthalmology: {ich_e1: true, note: "慢性の反復投与（例 硝子体内注射）を想定"}
+    general: {ich_e1: null, note: "領域が決まらないので、慢性・反復投与かを USER に確かめて決める（[TBD]）"}
+  sample_size_rule: "最終例数 = max(主要評価項目の必要数, 表示を狙う key secondary の必要数, 安全性曝露のためにこの試験に割り当てた数)。どれが効いたかを 10.11 に表で書く"

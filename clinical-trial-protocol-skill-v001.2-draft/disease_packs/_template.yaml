@@ -1,0 +1,114 @@
+# disease_packs/_template.yaml — 疾患パックの雛形（2026-10-04）
+# ---------------------------------------------------------------------------
+# 使い方:
+#   1. このファイルを disease_packs/<indication_key>.yaml という名前でコピーする
+#      （<indication_key> は英語の病名を小文字・_ つなぎにしたもの。例 atopic_dermatitis, plaque_psoriasis）
+#      ★ _ で始まるファイル（この雛形・_schema.yaml）は skill に無視される。コピーしたら名前の先頭の _ を外す
+#   2. 「★書く」の所を埋める。分からない値は消さずに "[TBD]" のまま残す（推測で埋めない）
+#   3. 各行の src に出典を書く（下の「出典の書き方」）。src の無い行は検査で落ちる
+#   4. 検査:  uv run scripts/validate_pack.py disease_packs/<indication_key>.yaml   → "OK" が出れば形は正しい
+#   5. 人（臨床・統計の担当）が中身を確認したら meta.status を confirmed にする。
+#      ★draft のままだと skill はこのパックを使わず、CTG から下書きパックを作る（Step 0 の規則）
+#
+# 出典の書き方（src）:
+#   CTG:<NCT番号>      ClinicalTrials.gov の登録        例 CTG:NCT01234567
+#   REF:<節>           参照プロトコル（手元のフルプロトコル）の節。頭のコメントにどの試験かを書く
+#   PREC:<ID>          当局の先例（precedents/<indication_key>/prec_ids.txt に在る ID か、頭のコメントで原本を説明した ID）
+#   PI:<ラベル>        添付文書（USPI / SmPC / 国内添付文書）     例 PI:USPI-Section14
+#   GUIDANCE:<名前>    当局のガイダンス                  例 GUIDANCE:FDA-AD-2023
+#   STD                ICH・GCP など、疾患に依らない定型
+#   DERIVED            上の材料から作った記述（要レビュー）。数値は書かない
+#
+# 全体の形の正典は disease_packs/_schema.yaml。書き方の実例は disease_packs/atopic_dermatitis.yaml。
+# ---------------------------------------------------------------------------
+# 出典の一覧（★書く。この パックで使う REF・PREC・PI の元を 1 行ずつ）:
+#   REF  = （例）参照プロトコル NCTxxxxxxxx（スポンサーのプロトコル番号, 版）
+#   PREC = （例）FDA の会議録・書簡（どの申請番号・どの文書か）
+#   PI   = （例）USPI <製品名>（確認日）
+
+meta:
+  disease: my_indication                  # ★書く: ファイル名と同じ indication_key
+  aliases: []                            # ★書く（任意）: 同じ適応症の別の呼び方。例 ["atopic dermatitis", "AD", "アトピー性皮膚炎"]
+                                          #   Step 0 で利用者の言葉と完全一致で照合する。広すぎる語（例 "eczema"）は入れない
+  therapeutic_area_family: immunology_inflammation   # ★選ぶ: oncology / immunology_inflammation / cardiometabolic / neuroscience / respiratory / infectious_disease / ophthalmology / general（どれにも当たらないとき）
+  endpoint_archetype: binary_responder    # ★選ぶ: binary_responder / continuous_change / time_to_event / count_rate
+  population_default: "[TBD]"             # ★書く: 対象集団を 1 文（例 "adults ≥18 y with moderate-to-severe ... inadequately controlled by ..."）
+  design_default: "[TBD]"                 # ★書く: 設計を 1 文（例 "randomized, double-blind, placebo-controlled, parallel-group"）
+  primary_timepoint_default: "[TBD]"      # ★書く: 例 "Week 16" / "event-driven"
+  status: draft                           # draft → 人が確認したら confirmed
+
+terminology:                              # 任意: 略語と尺度の 1 行説明
+  EXAMPLE-SCALE: "[TBD] 尺度の正式名と範囲"
+
+inclusion:                                # 5.2 節。1 行 1 基準。text は英語の完全な文
+  - {key: age, text: "Age ≥18 years at the time of informed consent", src: [STD]}
+  - {key: diagnosis, text: "[TBD] diagnosis criteria and minimum duration", src: [TBD]}
+  - {key: severity, text: "[TBD] severity threshold at screening and baseline", src: [TBD]}
+  - {key: prior_treatment_failure, text: "[TBD] inadequate response to ...", define: "[TBD] 何を・どれだけの期間・記録先", src: [TBD]}
+  - {key: consent, text: "Signed informed consent before any study-specific procedure", src: [STD]}
+
+exclusion:                                # 5.3 節
+  medical:                                # 疾患に依らない区分（感染・悪性腫瘍・心血管・検査値・精神・妊娠）は STD で補ってよい
+    - {text: "Active or chronic infection requiring systemic treatment within [TBD] weeks before baseline", src: [STD]}
+    - {text: "[TBD] disease-specific exclusion", src: [TBD]}
+  prior_therapy_washout:                  # 表になる（薬剤群 | 期間）
+    - {class: "[TBD] drug class", washout: "[TBD] weeks or 5 half-lives, whichever longer", src: [TBD]}
+  other:
+    - {text: "Pregnant or breastfeeding, or planning pregnancy during the study", src: [STD]}
+
+endpoints:
+  primary:
+    default: "[TBD] 主要評価項目と時点"
+    options: []                           # 参照試験で割れるときは候補を並べる
+    rules: []                             # 当局の先例などから来る決まり（例 "変化量ではなく反応率で — PREC:<ID>"）
+  key_secondary: []                       # 多重性の管理下に置くもの。4〜6 個
+  other_secondary: []
+  exploratory: []
+  safety: ["TEAEs, SAEs, AESIs, laboratory values, vital signs"]
+
+instruments:                              # 8.3 節。尺度ごとに 評価者・想起期間・得点・responder の閾値
+  EXAMPLE-SCALE: {rater: "[TBD]", recall: "[TBD]", score: "[TBD]", responder: "[TBD]", notes: "★版の最新は Step 1f で毎回確かめる。ここに版を固定しない"}
+
+rescue_table:                             # 6.10 節と 3 節の中間事象は同じ並び。救済療法の概念が無い疾患（例 腫瘍）は rows: []
+  rows:
+    - {therapy: "[TBD] rescue therapy", ip_action: "continue / interrupt / permanent discontinuation", estimand_ice: rescue, src: [TBD]}
+  rules: []
+
+estimands:                                # 3 節。5 属性で書く
+  intercurrent_events:
+    - {ice: "Initiation of rescue therapy", strategy: composite, handling: "[TBD]", src: [TBD]}
+    - {ice: "Permanent discontinuation of study intervention", strategy: treatment_policy, handling: "continue follow-up and use collected data", src: [STD]}
+  supportive_estimands: []
+  population_level_summary: {binary: "difference in proportions", continuous: "difference in means"}
+
+analysis:                                 # 10 節
+  primary: "[TBD]"
+  missing_data: {primary: "[TBD]", sensitivity: []}
+  multiplicity: []
+  stratification_default: []
+  covariates: "strata + baseline value"
+  subgroups: ["age", "sex", "race", "region", "baseline severity"]
+
+sample_size_priors:                       # 10.11 節。公表結果だけ。出典と取得日の無い値は入れない
+  rule: "添付文書・論文の数値だけを使い、出典と確認日を書く"
+  candidates: []
+
+safety_monitoring:
+  aesi_candidates_by_mechanism: {}        # 例 {"<機序>": ["<有害事象>", ...]}
+  rule: "AESI は機序から選び、2.2 の既知リスクと 9 節を一致させる"
+
+soa_rows:                                 # 1.3 節（来院スケジュール）の行。列（来院）は USER の期間から作る
+  - informed_consent
+  - eligibility_review
+  - demographics_medical_history
+  - physical_exam
+  - vital_signs
+  - hematology_chemistry_urinalysis
+  - pregnancy_test
+  - randomization
+  - ip_administration
+  - efficacy_assessments
+  - concomitant_medications
+  - adverse_events
+
+appendix_tables: []                       # 任意: 付録に載せる表（例 併用薬の強さの分類表）

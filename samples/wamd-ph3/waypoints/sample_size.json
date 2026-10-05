@@ -1,0 +1,117 @@
+{
+  "status": "PARTIAL — 安全性曝露で総例数の下限 668（暫定）。NI マージン（割合）は出典なし → 主要の必要数は [TBD]",
+  "primary": {
+    "type": "ni_binary",
+    "alpha_one_sided": 0.025,
+    "power": 0.9,
+    "dropout": 0.1,
+    "allocation": "1:1",
+    "missing": "inflate",
+    "p_control": {
+      "candidates": [
+        {
+          "value": 0.056,
+          "src": "[PRIOR:CTG:NCT02307682 結果欄] aflibercept 2 mg 群、Week 48 で ≥15 文字低下 5.6%（取得 2026-10-04）",
+          "caveat": "対照は 2 mg q8w。本試験の対照は 8 mg"
+        },
+        {
+          "value": 0.024,
+          "src": "[PRIOR:CTG:NCT04270747 結果欄] aflibercept 2 mg 群、Week 52 の視力維持（15 文字未満の低下）97.6% → 低下 2.4%（= 100 − 97.6 の DERIVED）",
+          "caveat": "Week 52、2 mg q8w"
+        }
+      ],
+      "rule": "両者で割れる（2.4%〜5.6%）。感度表に両方を使う。aflibercept 8 mg の値は PULSAR の結果欄に無い（獲得 15 文字改善のみ）"
+    },
+    "p_active": "[TBD] 点眼の見込み。対照と同じと仮定（感度表のみ）",
+    "margin": "[TBD] 割合のマージン。BCVA 変化量の非劣性マージンは CTG の結果欄で 4 文字（PULSAR・HAWK・TALON）[PRIOR:CTG]、先例は ≤4.5 文字 [PREC:Rani:s13/Q1b]"
+  },
+  "sensitivity_table_DERIVED": {
+    "note": "p_control は上の出典あり、margin は出典なし。両群とも p_control と同じ割合と仮定、片側 α 0.025、検出力 0.90、脱落 10%（inflate）。例数の決定ではない",
+    "rows": [
+      {
+        "p_control": 0.024,
+        "margin": 0.04,
+        "n_total": 616,
+        "n_total_enrolled": 685
+      },
+      {
+        "p_control": 0.024,
+        "margin": 0.05,
+        "n_total": 394,
+        "n_total_enrolled": 438
+      },
+      {
+        "p_control": 0.024,
+        "margin": 0.06,
+        "n_total": 274,
+        "n_total_enrolled": 305
+      },
+      {
+        "p_control": 0.024,
+        "margin": 0.07,
+        "n_total": 202,
+        "n_total_enrolled": 225
+      },
+      {
+        "p_control": 0.024,
+        "margin": 0.08,
+        "n_total": 154,
+        "n_total_enrolled": 172
+      },
+      {
+        "p_control": 0.024,
+        "margin": 0.1,
+        "n_total": 100,
+        "n_total_enrolled": 112
+      },
+      {
+        "p_control": 0.056,
+        "margin": 0.04,
+        "n_total": 1390,
+        "n_total_enrolled": 1545
+      },
+      {
+        "p_control": 0.056,
+        "margin": 0.05,
+        "n_total": 890,
+        "n_total_enrolled": 989
+      },
+      {
+        "p_control": 0.056,
+        "margin": 0.06,
+        "n_total": 618,
+        "n_total_enrolled": 687
+      },
+      {
+        "p_control": 0.056,
+        "margin": 0.07,
+        "n_total": 454,
+        "n_total_enrolled": 505
+      },
+      {
+        "p_control": 0.056,
+        "margin": 0.08,
+        "n_total": 348,
+        "n_total_enrolled": 387
+      },
+      {
+        "p_control": 0.056,
+        "margin": 0.1,
+        "n_total": 224,
+        "n_total_enrolled": 249
+      }
+    ],
+    "files": "ss/pc<p>_m<margin>.json"
+  },
+  "safety_exposure": {
+    "ich_e1": true,
+    "allocated_n": 668,
+    "rule": "300 XYZ-123 completers at Week 52 / 0.90 = 334 per arm; 1:1 → 668",
+    "src": "STD: ICH E1 (>=100 for 1 year); PREC:Rani:s13/Q3 (>=300 completed >=12 months)",
+    "note": "XYZ-123 群の ≥52 週曝露は 100 例を大きく上回る。第 2 相の曝露（3 用量）とのプールは [TBD]"
+  },
+  "final_n_total": 668,
+  "driven_by": "safety exposure allocated to this trial",
+  "caveat": "統計担当の確認が必要。点眼薬では対照群の発生率・マージンの根拠が最重要。",
+  "power_coverage_DERIVED": "N=668（脱落補正後）は、対照 5.6% でマージン約 7 ポイント以上、対照 2.4% で約 5 ポイント以上の NI を検出力 0.90 でカバー（群間差なしの仮定）。★第 2 相の複合事象率 31–35% が実際の XYZ-123 群の率なら、この仮定は成り立たない（D4）"
+}

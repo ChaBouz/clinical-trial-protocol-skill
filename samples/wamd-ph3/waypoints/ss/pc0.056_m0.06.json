@@ -1,0 +1,46 @@
+{
+  "label": "pc0.056_m0.06",
+  "method": "normal approximation, non-inferiority on risk difference",
+  "inputs": {
+    "kind": "ni_binary",
+    "hr": null,
+    "median_control": null,
+    "accrual": null,
+    "follow_up": null,
+    "margin": 0.06,
+    "p_control": [
+      0.056
+    ],
+    "p_active": [
+      0.056
+    ],
+    "delta": null,
+    "sd": null,
+    "rho": 0.0,
+    "arms_active": 1,
+    "ratio": 1.0,
+    "alpha": 0.025,
+    "alpha_split": "bonferroni",
+    "sides": 1,
+    "power": 0.9,
+    "dropout": 0.1,
+    "missing": "inflate",
+    "sens_rho": [
+      0.0,
+      0.3,
+      0.5,
+      0.7
+    ],
+    "out": "runs/wamd-ph3/waypoints/ss/pc0.056_m0.06.json",
+    "label": "pc0.056_m0.06"
+  },
+  "result": {
+    "n_per_arm": {
+      "control": 309,
+      "active": 309
+    },
+    "n_total": 618,
+    "n_total_enrolled": 687
+  },
+  "caveat": "Planning estimate. Assumptions must carry sources; biostatistician review required."
+}

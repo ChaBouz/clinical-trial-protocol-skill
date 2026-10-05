@@ -1,0 +1,116 @@
+{
+ "generated_at": "2026-10-04T15:01:33+00:00",
+ "script": "scia_precedent_export/scripts/build_precedents.py",
+ "version": "2026-10-04",
+ "indication": "neovascular_amd",
+ "drug_filter": null,
+ "verify_body": true,
+ "sources": [
+  {
+   "file": "SCIA_v1_dash_Root/data/main/60_meaning/FDA_Brolucizumab_Ophtha_761125Orig1s000.jsonl",
+   "sha256": "d8b238cbfe5514d287a593c96443079d965e0534b819c78e573596e819bb7bcb",
+   "lines": 45
+  },
+  {
+   "file": "SCIA_v1_dash_Root/data/main/20_identify/FDA_Brolucizumab_Ophtha_761125Orig1s000.json",
+   "sha256": "fa1d1db1f4eba1d770334fc56c6e3031417c47dc9a01411ac8d31c556bca3de6"
+  },
+  {
+   "file": "SCIA_v1_dash_Root/data/main/40_body/FDA_Brolucizumab_Ophtha_761125Orig1s000.jsonl",
+   "sha256": "70874af564bbec243fd0400832c3e743be3886a7b67cf0544fa9885093bd257e"
+  },
+  {
+   "file": "SCIA_v1_dash_Root/data/main/60_meaning/FDA_Faricimab_Ophtha_761235Orig1s000.jsonl",
+   "sha256": "35515597353f7342109edb8c5234a936eecd985cd7b7a2da78b380f5587dc423",
+   "lines": 59
+  },
+  {
+   "file": "SCIA_v1_dash_Root/data/main/20_identify/FDA_Faricimab_Ophtha_761235Orig1s000.json",
+   "sha256": "db4f8f5446daa6bb128281e7a77f9bfdd89c7dbd0d0f39c35222f42dfcd3075a"
+  },
+  {
+   "file": "SCIA_v1_dash_Root/data/main/40_body/FDA_Faricimab_Ophtha_761235Orig1s000.jsonl",
+   "sha256": "2df44173fdaeeef854c6bc6517cc598014ce40310a78f205f0750a9861376cae"
+  },
+  {
+   "file": "SCIA_v1_dash_Root/data/main/60_meaning/FDA_Ranibizumab_Ophtha_761197Orig1s000.jsonl",
+   "sha256": "68d0096d54fd0fcb7de7c1f6c872bbbc46cf7711e43e37933b6588b23af573bb",
+   "lines": 41
+  },
+  {
+   "file": "SCIA_v1_dash_Root/data/main/20_identify/FDA_Ranibizumab_Ophtha_761197Orig1s000.json",
+   "sha256": "c88a0710e4b0a39a666ed80cf272b10ccc983c3d661e9b441b88e11583695d65"
+  },
+  {
+   "file": "SCIA_v1_dash_Root/data/main/40_body/FDA_Ranibizumab_Ophtha_761197Orig1s000.jsonl",
+   "sha256": "c8e0b4039baba6146054357f05a742dcf9e70394268f0973b6cd7fba1469f2f1"
+  }
+ ],
+ "counts": {
+  "docs": 3,
+  "issues": 145,
+  "utterances": 330,
+  "units_by_topic": {
+   "eligibility": 6,
+   "endpoints": 11,
+   "instruments_pro": 2,
+   "estimand_rescue": 5,
+   "analysis_methods": 5,
+   "missing_data": 2,
+   "multiplicity": 1,
+   "dose_selection": 9,
+   "safety": 20,
+   "concomitant": 1,
+   "design": 13,
+   "pediatric": 7,
+   "pk_immunogenicity": 7,
+   "labeling": 15,
+   "out_of_protocol": 30,
+   "other": 63
+  },
+  "quotes_written": 330,
+  "quotes_mismatch": 0,
+  "utterances_not_written": 0,
+  "units": 150,
+  "unit_pointer_mismatch": 0
+ },
+ "overrides_applied": 0,
+ "files": [
+  "drugs/brolucizumab/index.md",
+  "drugs/brolucizumab/s0.md",
+  "drugs/brolucizumab/s13.md",
+  "drugs/brolucizumab/s15.md",
+  "drugs/brolucizumab/s2.md",
+  "drugs/brolucizumab/s20.md",
+  "drugs/faricimab/index.md",
+  "drugs/faricimab/s0.md",
+  "drugs/faricimab/s2.md",
+  "drugs/faricimab/s22.md",
+  "drugs/faricimab/s3.md",
+  "drugs/faricimab/s40.md",
+  "drugs/faricimab/s5.md",
+  "drugs/ranibizumab/index.md",
+  "drugs/ranibizumab/s0.md",
+  "drugs/ranibizumab/s13.md",
+  "drugs/ranibizumab/s2.md",
+  "index.md",
+  "prec_ids.txt",
+  "topics/analysis_methods.md",
+  "topics/concomitant.md",
+  "topics/design.md",
+  "topics/dose_selection.md",
+  "topics/eligibility.md",
+  "topics/endpoints.md",
+  "topics/estimand_rescue.md",
+  "topics/instruments_pro.md",
+  "topics/labeling.md",
+  "topics/missing_data.md",
+  "topics/multiplicity.md",
+  "topics/other.md",
+  "topics/out_of_protocol.md",
+  "topics/pediatric.md",
+  "topics/pk_immunogenicity.md",
+  "topics/safety.md"
+ ],
+ "stale_files_not_rewritten": []
+}

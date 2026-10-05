@@ -1,0 +1,238 @@
+# section_spec_m11.yaml  (DRAFT 2026-10-03)
+# ---------------------------------------------------------------------------
+# プロトコルの「枠」と「粒度」を決める正典。各手順（Step 2〜5）はここだけを見て
+# 節番号・見出し・必須項目・分量・情報源を決める（指示書の中に節番号を手で書かない）。
+#
+# 骨格: ICH M11 CeSHarP テンプレート（Step 4, 2025-11-19 採択／FDA 版 2026-05）の
+#       1 段目 14 節と主な 2 段目。
+# 粒度の基準（★1 本の試験からの実測。疾患で重みが変わる → design_archetypes.yaml の
+#   therapeutic_area_families.emphasis が target_pages を上書きする）:
+#   参照プロトコル NCT05398445（Amgen 20210142, rocatinlimab 第3相 AD,
+#       Amendment 6, 本文 143 頁）の各節の頁数を「ref_pages」として記録し、
+#       target_pages はそれを第3相・単一試験の目安として丸めたもの。
+#       ※ 参照プロトコルは社内様式（M11 ではない）なので、ref_from に元の節番号を書く。
+#
+# 情報源ラベル（本文の各段落・各表の行に付ける。最終版で外すかは利用者が選ぶ）:
+#   [USER]               利用者が Step 0 で決めた設計（群・用量・割付比・期間 等）
+#   [CTG:<NCT>:<field>]  ClinicalTrials.gov の登録情報から引用（MCP で取得）
+#                        ※ MCP get_trial_details が返す欄は assets/ctg_mcp_field_map.yaml 参照。
+#                          群・用量・割付・盲検・結果の数値は返らない（2026-10-03 実測）
+#   [PRIOR:<出典>]       例数の仮定に使う公表結果（添付文書 14 節・論文）。出典必須
+#   [PACK:<disease>]     疾患パックの既定値（disease_packs/*.yaml）
+#   [PREC:<id>]          当局の先例（FDA コレスポンデンス等）。逐語と出典 ID を持つ
+#   [STD]                規制・GCP の定型（ICH E6(R3)/E9(R1)/21 CFR 50,56,312 等）
+#   [DERIVED]            上の材料から Claude が膨らませた記述（要レビュー）
+#   [TBD]                スポンサーが埋める値（用量・CMC・IB の数値・連絡先 等）
+#
+# 膨らませ規則（expand_rule）の共通原則:
+#   E1 数値（用量・閾値・例数・期間・割合）は CTG / PACK / PREC / 計算スクリプトの
+#      どれかに出典があるときだけ書く。無ければ [TBD] にし、推測で埋めない。
+#   E2 CTG の記述は要旨なので、各項目は「CTG の事実 → PACK の標準手順 → STD の定型」
+#      の順で肉付けし、どこまでが CTG 由来かをラベルで分ける。
+#   E3 同じ事実（目的・評価項目・群・時点）は 1 か所（protocol_facts.json）に置き、
+#      全節はそこから書く。節ごとに言い換えない。
+#   E4 depth が "full" の節は「誰が・いつ・何を・どの基準で・記録先」まで書く。
+#      "summary" は要点と参照先、"pointer" は他節への参照のみ。
+# ---------------------------------------------------------------------------
+
+meta:
+  template: ICH-M11-CeSHarP-Step4
+  reference_protocol: {nct: NCT05398445, sponsor_protocol: "20210142", version: "Amendment 6 (2024-02-26)", body_pages: 143}
+  reference_sap: {nct: NCT05398445, version: "SAP 2024-12-11", pages: 65, note: "例数の節(3.2)は全面黒塗り。方法の構造のみ参照可"}
+  language: {protocol: en, notes_to_user: ja}
+
+sections:
+
+- id: "TP"
+  title: "Title Page"
+  depth: full
+  target_pages: 1
+  items:
+    - {key: full_title, src: [CTG:title, TBD]}
+    - {key: short_title_acronym, src: [CTG:acronym, TBD]}
+    - {key: sponsor_protocol_number, src: [USER, TBD]}
+    - {key: phase, src: [CTG:phase]}
+    - {key: investigational_product, src: [CTG:interventions, TBD]}
+    - {key: regulatory_ids, note: "IND/EudraCT/jRCT 等", src: [USER, TBD]}
+    - {key: sponsor_name_address, src: [CTG:sponsor, TBD]}
+    - {key: version_date_amendment, src: [TBD]}
+    - {key: confidentiality_statement, src: [STD]}
+
+- id: "1"
+  title: "PROTOCOL SUMMARY"
+  ref_from: "1"
+  ref_pages: 18
+  subsections:
+  - id: "1.1"
+    title: "Protocol Synopsis"
+    depth: full
+    target_pages: 8-10
+    rule: "3・4・5・6・10 節の要約。protocol_facts.json からのみ生成し、本文と字句を一致させる（check_protocol.py で照合）"
+    items: [rationale_short, objectives_estimands_table, overall_design, number_of_participants, arms_and_duration, key_eligibility, statistical_methods_short, data_monitoring_committee]
+  - id: "1.2"
+    title: "Trial Schema"
+    depth: full
+    target_pages: 1
+    rule: "期間（スクリーニング／投与／追跡）・群・割付比・層別・主要時点を 1 枚の図（Mermaid 可）に"
+    src: [USER:arms, USER:design, PACK]
+  - id: "1.3"
+    title: "Schedule of Activities"
+    depth: full
+    target_pages: 6-8
+    rule: "行=手順（同意・適格性・身体所見・バイタル・心電図・検査・投与・有効性評価・PRO・日誌・PK/ADA・AE/併用薬）、列=来院（週と許容幅）。全評価項目の時点が必ず列に在ること"
+    src: [CTG:*_outcomes.time_frame, PACK:soa_rows, DERIVED]
+
+- id: "2"
+  title: "INTRODUCTION"
+  ref_from: "2"
+  ref_pages: 4
+  subsections:
+  - {id: "2.1", title: "Purpose of Trial", depth: full, target_pages: 1, src: [CTG:brief_summary, CTG:detailed_description, DERIVED]}
+  - id: "2.2"
+    title: "Assessment of Risks and Benefits"
+    depth: full
+    target_pages: 2-3
+    items: [disease_background, product_mechanism_and_prior_data, known_and_potential_risks, potential_benefits, overall_benefit_risk_conclusion]
+    src: [PACK:background, TBD:investigators_brochure, DERIVED]
+    rule: "非臨床・過去試験の数値は IB 由来のみ。無ければ [TBD:IB]"
+
+- id: "3"
+  title: "TRIAL OBJECTIVES AND ASSOCIATED ESTIMANDS"
+  ref_from: "3"
+  ref_pages: 8
+  rule: "目的ごとに表: Objective | Endpoint | Population | Intercurrent events & strategy | Population-level summary。主要は estimand を 5 属性で必須記載"
+  subsections:
+  - {id: "3.1", title: "Primary Objective(s) and Associated Estimand(s)", depth: full, src: [CTG:primary_outcomes, PACK:primary_endpoint, PACK:estimand]}
+  - {id: "3.2", title: "Secondary Objective(s) and Associated Estimand(s)", depth: full, src: [CTG:secondary_outcomes, PACK:secondary_endpoints], rule: "key secondary（多重性管理下）とその他を分ける"}
+  - {id: "3.3", title: "Exploratory Objective(s)", depth: summary, src: [CTG:other_outcomes, PACK, DERIVED]}
+
+- id: "4"
+  title: "TRIAL DESIGN"
+  ref_from: "4"
+  ref_pages: 3
+  subsections:
+  - {id: "4.1", title: "Description of Trial Design", depth: full, target_pages: 1-2, items: [phase, allocation_ratio, stratification, masking, arms, periods_and_durations, number_of_sites_countries, interim_or_dmc], src: [USER:design, USER:arms, CTG:enrollment(先例の規模), CTG:locations, PACK]}
+  - {id: "4.2", title: "Rationale for Trial Design", depth: full, target_pages: 1, items: [control_rationale, duration_rationale, endpoint_rationale, population_rationale, patient_input], src: [PACK, PREC, DERIVED]}
+  - {id: "4.3", title: "Access to Trial Intervention After End of Trial", depth: summary, src: [USER:arms, TBD]}
+  - {id: "4.4", title: "Start of Trial and End of Trial", depth: summary, src: [STD]}
+
+- id: "5"
+  title: "TRIAL POPULATION"
+  ref_from: "5"
+  ref_pages: 6
+  subsections:
+  - {id: "5.1", title: "Description of Trial Population and Rationale", depth: summary}
+  - id: "5.2"
+    title: "Inclusion Criteria"
+    depth: full
+    target_items: 8-12
+    rule: "CTG の eligibilityCriteria を逐語で起点にし、PACK の操作的定義（測定時点＝スクリーニングと Day1、閾値、文書化の方法）で各項目を完全な文にする"
+    src: [CTG:eligibility_criteria, PACK:inclusion]
+  - id: "5.3"
+    title: "Exclusion Criteria"
+    depth: full
+    target_items: 20-35
+    rule: "区分: 疾患関連／前治療と洗い出し期間（5 半減期 or 週数）／感染症（TB・HBV・HCV・HIV・寄生虫）／心血管・検査値／悪性腫瘍／精神／妊娠授乳／ワクチン／その他。洗い出し期間は表にする"
+    src: [CTG:eligibility_criteria, PACK:exclusion, STD]
+  - {id: "5.4", title: "Lifestyle Considerations", depth: summary, src: [PACK]}
+  - {id: "5.5", title: "Screen Failures", depth: summary, rule: "再スクリーニングの可否・回数", src: [STD, PACK]}
+
+- id: "6"
+  title: "TRIAL INTERVENTION AND CONCOMITANT THERAPY"
+  ref_from: "6"
+  ref_pages: 11
+  subsections:
+  - {id: "6.1", title: "Description of Investigational Trial Intervention", depth: full, src: [USER:product, TBD:CMC]}
+  - {id: "6.2", title: "Rationale for Investigational Trial Intervention Dose and Regimen", depth: full, src: [TBD:phase2_data, PREC, DERIVED], rule: "E1 厳守。用量の数値は [TBD] 可"}
+  - {id: "6.3", title: "Investigational Trial Intervention Administration", depth: full, items: [route, site, timing, loading_dose, missed_dose_rule, post_dose_monitoring]}
+  - {id: "6.4", title: "Investigational Trial Intervention Dose Modification", depth: full, rule: "減量不可なら中断・再開・永久中止の規則を表に", src: [PACK, TBD]}
+  - {id: "6.5", title: "Management of Investigational Trial Intervention Overdose", depth: summary, src: [STD]}
+  - {id: "6.6", title: "Preparation, Storage, Handling and Accountability", depth: summary, src: [TBD:pharmacy_manual, STD]}
+  - {id: "6.7", title: "Investigational Trial Intervention Assignment, Randomisation and Blinding", depth: full, items: [IRT, strata, blinding_method, emergency_unblinding, who_is_unblinded], src: [USER:design, PACK:stratification, STD]}
+  - {id: "6.8", title: "Investigational Trial Intervention Adherence", depth: summary}
+  - {id: "6.9", title: "Description of Noninvestigational Trial Intervention", depth: summary, rule: "基礎治療・背景治療（疾患パックの background_therapy）", src: [PACK]}
+  - id: "6.10"
+    title: "Concomitant Therapy"
+    depth: full
+    target_pages: 3-4
+    rule: "3 表を必須: (a) 禁止療法と対処（継続/一時中断/永久中止） (b) 非推奨療法 (c) 救済療法（種類ごとに投与継続の可否と estimand 上の扱い）。(c) の行は 3 節の中間事象と 1 対 1"
+    src: [PACK:rescue_table, PACK:prohibited, PREC]
+
+- id: "7"
+  title: "PARTICIPANT DISCONTINUATION OF TRIAL INTERVENTION AND DISCONTINUATION OR WITHDRAWAL FROM TRIAL"
+  ref_from: "7"
+  ref_pages: 2
+  rule: "投与中止後も来院継続を推奨（treatment policy 用データ回収）を明記"
+  subsections:
+  - {id: "7.1", title: "Discontinuation of Trial Intervention", depth: full, src: [PACK, STD]}
+  - {id: "7.2", title: "Participant Withdrawal from the Trial", depth: full, src: [STD]}
+  - {id: "7.3", title: "Lost to Follow-Up", depth: summary, src: [STD]}
+
+- id: "8"
+  title: "TRIAL ASSESSMENTS AND PROCEDURES"
+  ref_from: "8 (8.4.5 は M11 では 9 節へ)"
+  ref_pages: 21
+  subsections:
+  - {id: "8.1", title: "Trial Assessments and Procedures Considerations", depth: summary}
+  - {id: "8.2", title: "Screening/Baseline Assessments and Procedures", depth: full, src: [STD, PACK]}
+  - id: "8.3"
+    title: "Efficacy Assessments and Procedures"
+    depth: full
+    target_pages: 5
+    rule: "尺度ごとに: 名称と版（waypoints/instrument_versions.json から。参照試験の版を写さない）・評価者・訓練・想起期間・得点化・responder の定義・時点。PRO は日誌の遵守条件まで"
+    src: [PACK:instruments]
+  - {id: "8.4", title: "Safety Assessments and Procedures", depth: full, target_pages: 6-9, src: [STD, PACK:safety_monitoring]}
+  - {id: "8.5", title: "Pharmacokinetics", depth: summary, src: [TBD, PACK]}
+  - {id: "8.6", title: "Biomarkers / Immunogenicity", depth: summary, src: [PACK, PREC]}
+
+- id: "9"
+  title: "ADVERSE EVENTS, SERIOUS ADVERSE EVENTS, PRODUCT COMPLAINTS, PREGNANCY AND POSTPARTUM INFORMATION, AND SPECIAL SAFETY SITUATIONS"
+  ref_from: "8.4.5 + Appendix 4"
+  ref_pages: 13
+  depth: full
+  rule: "定義・収集期間・因果関係/重症度・報告期限（24 時間 等）・AESI（PACK）・妊娠。定型は STD、AESI は PACK"
+  src: [STD, PACK:aesi]
+
+- id: "10"
+  title: "STATISTICAL CONSIDERATIONS"
+  ref_from: "9"
+  ref_pages: 6
+  subsections:
+  - {id: "10.1", title: "General Considerations", depth: summary}
+  - {id: "10.2", title: "Analysis Sets", depth: full, src: [STD]}
+  - {id: "10.3", title: "Analyses of Demographics and Other Baseline Variables", depth: summary}
+  - {id: "10.4", title: "Analyses Associated with the Primary Objective(s)", depth: full, rule: "estimand ごとに主解析・欠測の扱い・感度分析 2 本以上（MI 詳細、tipping point）・補助 estimand", src: [PACK:analysis, PREC]}
+  - {id: "10.5", title: "Analyses Associated with the Secondary Objective(s)", depth: full}
+  - {id: "10.6", title: "Analyses Associated with the Exploratory Objective(s)", depth: pointer}
+  - {id: "10.7", title: "Safety Analyses", depth: summary}
+  - {id: "10.8", title: "Other Analyses", depth: summary, rule: "サブグループ（PACK:subgroups）"}
+  - {id: "10.9", title: "Interim Analyses", depth: summary}
+  - {id: "10.10", title: "Multiplicity Adjustments", depth: full, rule: "design_archetypes.yaml の multiplicity_patterns から該当するものを全部（co-primary・用量別・key secondary の順序・中間解析）"}
+  - id: "10.11"
+    title: "Sample Size Determination"
+    depth: full
+    rule: "scripts/sample_size.py の出力のみ。最終例数 = max(主要, 表示を狙う key secondary, 安全性曝露の割当) を combine で出し、どれが効いたかを表にする。安全性曝露は design_archetypes.safety_exposure（ICH E1 の適用可否は疾患領域で決まる。対象外ならその理由を書く）。仮定は出典つき（PRIOR/CTG/PREC）、無ければ [TBD] と感度表"
+    src: [PRIOR:published_results, PREC, PACK:sample_size_priors]
+
+- id: "11"
+  title: "TRIAL OVERSIGHT AND OTHER GENERAL CONSIDERATIONS"
+  ref_from: "Appendix 3"
+  ref_pages: 9
+  depth: summary
+  src: [STD]
+  rule: "倫理・同意・データ保護・委員会・監査・記録保存・公開方針。定型中心だが国別要件は 12 節へ"
+
+- id: "12"
+  title: "APPENDIX: SUPPORTING DETAILS"
+  ref_from: "Appendix 2,5,6,7,8,9"
+  ref_pages: 24
+  items:
+    - {key: clinical_laboratory_tests, ref_pages: 3, src: [STD, PACK]}
+    - {key: contraception_and_pregnancy, ref_pages: 6, src: [STD]}
+    - {key: sample_storage, ref_pages: 2, src: [STD]}
+    - {key: hepatotoxicity_rules, ref_pages: 4, src: [STD]}
+    - {key: disease_specific_tables, ref_pages: 2, src: [PACK:appendix_tables]}
+    - {key: country_specific_requirements, ref_pages: 7, src: [CTG:locations, TBD]}
+
+- {id: "13", title: "APPENDIX: GLOSSARY OF TERMS AND ABBREVIATIONS", ref_pages: 3, depth: full, rule: "本文から自動抽出"}
+- {id: "14", title: "APPENDIX: REFERENCES", ref_pages: 3, depth: full, rule: "本文で引用したものだけ。CTG・PREC の出典もここに"}
