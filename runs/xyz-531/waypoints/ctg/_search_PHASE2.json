@@ -1,0 +1,1368 @@
+{
+  "query": {
+    "query.cond": "aplastic anemia",
+    "query.term": "AREA[Phase]PHASE2",
+    "filter.overallStatus": "COMPLETED,ACTIVE_NOT_RECRUITING,RECRUITING,TERMINATED,NOT_YET_RECRUITING,UNKNOWN",
+    "pageSize": "100",
+    "format": "json",
+    "fields": "NCTId,BriefTitle,Phase,OverallStatus,StartDate,EnrollmentCount,HasResults,Condition,InterventionName",
+    "query.intr": "eltrombopag OR romiplostim OR hetrombopag OR avatrombopag OR thrombopoietin OR TPO"
+  },
+  "result": {
+    "studies": [
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT02094417",
+            "briefTitle": "A Phase 2 Study to Evaluate the Efficacy and Safety of AMG531 in Aplastic Anemia"
+          },
+          "statusModule": {
+            "overallStatus": "COMPLETED",
+            "startDateStruct": {
+              "date": "2014-04-14"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Aplastic Anemia"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE2"
+            ],
+            "enrollmentInfo": {
+              "count": 35
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "AMG531"
+              }
+            ]
+          }
+        },
+        "hasResults": true
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT00922883",
+            "briefTitle": "A Pilot Study of the Thrombopoietin-Receptor Agonist Eltrombopag in Refractory Aplastic Anemia Patients"
+          },
+          "statusModule": {
+            "overallStatus": "COMPLETED",
+            "startDateStruct": {
+              "date": "2009-05-29"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Anemia, Aplastic",
+              "Anemia, Hypoplastic",
+              "Thrombocytopenia"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE2"
+            ],
+            "enrollmentInfo": {
+              "count": 43
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "Eltrombopag"
+              }
+            ]
+          }
+        },
+        "hasResults": true
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT03206086",
+            "briefTitle": "Eltrombopag for Fanconi Anemia"
+          },
+          "statusModule": {
+            "overallStatus": "ACTIVE_NOT_RECRUITING",
+            "startDateStruct": {
+              "date": "2018-11-02"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Fanconi Anemia"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE2"
+            ],
+            "enrollmentInfo": {
+              "count": 25
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "Eltrombopag"
+              }
+            ]
+          }
+        },
+        "hasResults": true
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT02857530",
+            "briefTitle": "Efficacy and Safety of Thrombopoietin In Patients With Severe and Very Severe Aplastic Anemia"
+          },
+          "statusModule": {
+            "overallStatus": "UNKNOWN",
+            "startDateStruct": {
+              "date": "2016-08"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Anemia, Aplastic"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE2"
+            ],
+            "enrollmentInfo": {
+              "count": 250
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "rhTPO"
+              },
+              {
+                "name": "placebo"
+              }
+            ]
+          }
+        },
+        "hasResults": false
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT06004752",
+            "briefTitle": "Efficacy and Safety of CsA+AVA in the Treatment of NSAA in the Elderly"
+          },
+          "statusModule": {
+            "overallStatus": "UNKNOWN",
+            "startDateStruct": {
+              "date": "2023-08-17"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Aplastic Anemia"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE2"
+            ],
+            "enrollmentInfo": {
+              "count": 30
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "Ciclosporin"
+              },
+              {
+                "name": "Avatrombopag"
+              }
+            ]
+          }
+        },
+        "hasResults": false
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT06607367",
+            "briefTitle": "REscuing Bone Marrow Function in Patients with AplaStic AnaEmia and Bone Marrow FaiLure Post AllogEneiC Transplantation 2"
+          },
+          "statusModule": {
+            "overallStatus": "NOT_YET_RECRUITING",
+            "startDateStruct": {
+              "date": "2024-10-30"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Poor Graft Function",
+              "Aplastic Anemia Idiopathic"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE1",
+              "PHASE2"
+            ],
+            "enrollmentInfo": {
+              "count": 20
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "Ruxolitinib (JAKAVI®)"
+              },
+              {
+                "name": "Eltrombopag (Revolade®)"
+              }
+            ]
+          }
+        },
+        "hasResults": false
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT02773290",
+            "briefTitle": "Study of Romiplostim(AMG531) in Subjects With Aplastic Anemia"
+          },
+          "statusModule": {
+            "overallStatus": "COMPLETED",
+            "startDateStruct": {
+              "date": "2016-05"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Aplastic Anemia"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE2",
+              "PHASE3"
+            ],
+            "enrollmentInfo": {
+              "count": 46
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "Romiplostim"
+              }
+            ]
+          }
+        },
+        "hasResults": false
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT04095936",
+            "briefTitle": "Study of AMG531 (Romiplostim) in Patients With Aplastic Anemia"
+          },
+          "statusModule": {
+            "overallStatus": "COMPLETED",
+            "startDateStruct": {
+              "date": "2019-12-03"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Aplastic Anemia"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE2",
+              "PHASE3"
+            ],
+            "enrollmentInfo": {
+              "count": 24
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "Romiplostim"
+              }
+            ]
+          }
+        },
+        "hasResults": false
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT01891994",
+            "briefTitle": "Extended Dosing With Eltrombopag for Severe Aplastic Anemia"
+          },
+          "statusModule": {
+            "overallStatus": "COMPLETED",
+            "startDateStruct": {
+              "date": "2013-06-28"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Severe Aplastic Anemia (SAA)"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE2"
+            ],
+            "enrollmentInfo": {
+              "count": 40
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "Eltrombopag"
+              }
+            ]
+          }
+        },
+        "hasResults": true
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT07400341",
+            "briefTitle": "Romiplostim Versus rhTPO for Platelet Engraftment After Transplant in MDS and AA"
+          },
+          "statusModule": {
+            "overallStatus": "RECRUITING",
+            "startDateStruct": {
+              "date": "2026-01-31"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "MDS (Myelodysplastic Syndrome)",
+              "Aplastic Anemia (AA)"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE2"
+            ],
+            "enrollmentInfo": {
+              "count": 66
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "Romiplostim"
+              },
+              {
+                "name": "Recombinant Human Thrombopoietin"
+              }
+            ]
+          }
+        },
+        "hasResults": false
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT05660785",
+            "briefTitle": "Herombopag Added to Cyclosporine in Non Severe Aplastic Anemia"
+          },
+          "statusModule": {
+            "overallStatus": "COMPLETED",
+            "startDateStruct": {
+              "date": "2022-12-01"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Non Severe Aplastic Anemia",
+              "Untreated"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE2"
+            ],
+            "enrollmentInfo": {
+              "count": 54
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "Herombopag"
+              }
+            ]
+          }
+        },
+        "hasResults": false
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT03025698",
+            "briefTitle": "A Phase II Dose-escalation Study Characterizing the PK of Eltrombopag in Pediatric Patients With Previously Untreated or Relapsed Severe Aplastic Anemia or Recurrent Aplastic Anemia"
+          },
+          "statusModule": {
+            "overallStatus": "COMPLETED",
+            "startDateStruct": {
+              "date": "2017-09-30"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Aplastic Anemia"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE2"
+            ],
+            "enrollmentInfo": {
+              "count": 51
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "Eltrombopag"
+              },
+              {
+                "name": "hATG"
+              },
+              {
+                "name": "CsA"
+              }
+            ]
+          }
+        },
+        "hasResults": true
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT03988608",
+            "briefTitle": "Study Assessed the Safety and Efficacy of Eltrombopag in Chinese Refractory or Relapsed Severe Aplastic Anemia (SAA) Subjects."
+          },
+          "statusModule": {
+            "overallStatus": "COMPLETED",
+            "startDateStruct": {
+              "date": "2019-12-09"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Aplastic Anemia"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE2"
+            ],
+            "enrollmentInfo": {
+              "count": 20
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "Eltrombopag"
+              }
+            ]
+          }
+        },
+        "hasResults": true
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT04269889",
+            "briefTitle": "Treatment of Refractory Diamond-Blackfan Anemia With Eltrombopag"
+          },
+          "statusModule": {
+            "overallStatus": "COMPLETED",
+            "startDateStruct": {
+              "date": "2020-12-01"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Anemia, Diamond-Blackfan"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE1",
+              "PHASE2"
+            ],
+            "enrollmentInfo": {
+              "count": 15
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "Eltrombopag"
+              }
+            ]
+          }
+        },
+        "hasResults": true
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT07786922",
+            "briefTitle": "A Study of Avatrombopag in Adults With Aplastic Anemia Who Did Not Respond to, Cannot Receive, or Had Return of Disease After Standard Treatment"
+          },
+          "statusModule": {
+            "overallStatus": "NOT_YET_RECRUITING",
+            "startDateStruct": {
+              "date": "2026-07-31"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Aplastic Anemia"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE2",
+              "PHASE3"
+            ],
+            "enrollmentInfo": {
+              "count": 26
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "Avatrombopag 20 mg Oral Tablet"
+              }
+            ]
+          }
+        },
+        "hasResults": false
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT03557099",
+            "briefTitle": "A Study to Evaluate the Safety and Efficacy of Hetrombopag Olamine in Severe Aplastic Anemia （SAA） Patient"
+          },
+          "statusModule": {
+            "overallStatus": "COMPLETED",
+            "startDateStruct": {
+              "date": "2018-06-20"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Severe Aplastic Anemia"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE1",
+              "PHASE2"
+            ],
+            "enrollmentInfo": {
+              "count": 55
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "Hetrombopag Olamine"
+              }
+            ]
+          }
+        },
+        "hasResults": false
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT07572084",
+            "briefTitle": "Romiplostim N01 in Chemoradiotherapy-induced Aplastic Anemia"
+          },
+          "statusModule": {
+            "overallStatus": "NOT_YET_RECRUITING",
+            "startDateStruct": {
+              "date": "2026-04"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Aplastic Anemia"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE2"
+            ],
+            "enrollmentInfo": {
+              "count": 43
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "Romiplostim N01"
+              }
+            ]
+          }
+        },
+        "hasResults": false
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT07010237",
+            "briefTitle": "Dose-attenuated IST and Hetrombopag in Elderly (≥65 Years) Patients With Severe Aplastic Anemia"
+          },
+          "statusModule": {
+            "overallStatus": "RECRUITING",
+            "startDateStruct": {
+              "date": "2025-02-01"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Sever Aplastic Anaemia",
+              "Elderly (People Aged 65 or More)",
+              "Immunosuppressive Treatment"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE2"
+            ],
+            "enrollmentInfo": {
+              "count": 65
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "Dose-attenuated IST and Hetrombopag"
+              }
+            ]
+          }
+        },
+        "hasResults": false
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT06045052",
+            "briefTitle": "Eltrombopag for Treatment of Fanconi Anemia"
+          },
+          "statusModule": {
+            "overallStatus": "COMPLETED",
+            "startDateStruct": {
+              "date": "2020-12-02"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Fanconi Anemia"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE2"
+            ],
+            "enrollmentInfo": {
+              "count": 8
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "Eltrombopag"
+              }
+            ]
+          }
+        },
+        "hasResults": false
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT06613880",
+            "briefTitle": "Standard Immunosuppressive Therapy Combined With Romiplostim N01 as First-line Treatment for Severe Aplastic Anemia"
+          },
+          "statusModule": {
+            "overallStatus": "UNKNOWN",
+            "startDateStruct": {
+              "date": "2024-10-24"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Aplastic Anemia",
+              "TPO Receptor Agonists"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE2"
+            ],
+            "enrollmentInfo": {
+              "count": 48
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "standard IST combined with Romiplostim N01"
+              }
+            ]
+          }
+        },
+        "hasResults": false
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT02404025",
+            "briefTitle": "Eltrombopag in Combination With Rabbit Anti-thymocyte Globulin/Cyclosporine A in Naive Aplastic Anemia (AA) Subjects"
+          },
+          "statusModule": {
+            "overallStatus": "COMPLETED",
+            "startDateStruct": {
+              "date": "2015-05-12"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Aplastic Anemia"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE2"
+            ],
+            "enrollmentInfo": {
+              "count": 10
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "Eltrombopag"
+              },
+              {
+                "name": "Rabbit ATG"
+              },
+              {
+                "name": "CsA"
+              }
+            ]
+          }
+        },
+        "hasResults": true
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT01623167",
+            "briefTitle": "Eltrombopag With Standard Immunosuppression for Severe Aplastic Anemia"
+          },
+          "statusModule": {
+            "overallStatus": "ACTIVE_NOT_RECRUITING",
+            "startDateStruct": {
+              "date": "2012-07-02"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Severe Aplastic Anemia"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE1",
+              "PHASE2"
+            ],
+            "enrollmentInfo": {
+              "count": 207
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "Cohort 1: hATG, CsA, EPAG Day 14 to Month 6"
+              },
+              {
+                "name": "Cohort 2: hATG, CsA, EPAG Day 14 to Month 3"
+              },
+              {
+                "name": "Cohort 3: hATG, CsA (dose reduced), EPAG day 1 to month 6"
+              },
+              {
+                "name": "Extension Cohort"
+              }
+            ]
+          }
+        },
+        "hasResults": true
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT07558434",
+            "briefTitle": "CsA+EPAG/HPAG+Romiplostim N01 in Newly-diagnosed SAA/TD-NSAA"
+          },
+          "statusModule": {
+            "overallStatus": "NOT_YET_RECRUITING",
+            "startDateStruct": {
+              "date": "2026-04"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Severe Aplastic Anemia (SAA)",
+              "Transfusion-dependent Non-severe Aplastic Anemia"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE2"
+            ],
+            "enrollmentInfo": {
+              "count": 43
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "Cyclosporine (CsA)"
+              },
+              {
+                "name": "thrombopoietin receptor agonist (TPO-RA)"
+              },
+              {
+                "name": "Romiplostim N01"
+              }
+            ]
+          }
+        },
+        "hasResults": false
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT03957694",
+            "briefTitle": "Study of AMG531(Romiplostim) in Patients With Aplastic Anemia"
+          },
+          "statusModule": {
+            "overallStatus": "COMPLETED",
+            "startDateStruct": {
+              "date": "2019-04-25"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Aplastic Anemia"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE2",
+              "PHASE3"
+            ],
+            "enrollmentInfo": {
+              "count": 17
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "Romiplostim"
+              }
+            ]
+          }
+        },
+        "hasResults": false
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT01328587",
+            "briefTitle": "Eltrombopag for Moderate Aplastic Anemia"
+          },
+          "statusModule": {
+            "overallStatus": "COMPLETED",
+            "startDateStruct": {
+              "date": "2012-03-13"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Moderate Aplastic Anemia",
+              "Unilineage Bone Marrow Failure Disorders"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE2"
+            ],
+            "enrollmentInfo": {
+              "count": 34
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "Eltrombopag"
+              }
+            ]
+          }
+        },
+        "hasResults": true
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT02773225",
+            "briefTitle": "Efficacy and Safety of Eltrombopag + CSA in Patients With Moderate Aplastic Anemia (EMAA)"
+          },
+          "statusModule": {
+            "overallStatus": "COMPLETED",
+            "startDateStruct": {
+              "date": "2015-01-27"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Anemia, Aplastic"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE2",
+              "PHASE3"
+            ],
+            "enrollmentInfo": {
+              "count": 93
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "Eltrombopag"
+              },
+              {
+                "name": "Placebo (for Eltrombopag)"
+              }
+            ]
+          }
+        },
+        "hasResults": false
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT04304820",
+            "briefTitle": "Early Initiation of Oral Therapy With Cyclosporine and Eltrombopag for Treatment Naive Severe Aplastic Anemia (SAA)"
+          },
+          "statusModule": {
+            "overallStatus": "RECRUITING",
+            "startDateStruct": {
+              "date": "2020-05-07"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Severe Aplastic Anemia"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE2"
+            ],
+            "enrollmentInfo": {
+              "count": 80
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "Eltrombopag"
+              },
+              {
+                "name": "Cyclosporine"
+              },
+              {
+                "name": "Horse-Anti-thymocyte-Globulin"
+              }
+            ]
+          }
+        },
+        "hasResults": true
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT06254287",
+            "briefTitle": "Efficacy and Safety of Avatrombopag vs. Avatrombopag Combined With rhTPO in the Treatment of SAA"
+          },
+          "statusModule": {
+            "overallStatus": "UNKNOWN",
+            "startDateStruct": {
+              "date": "2024-02-01"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Anemia, Aplastic"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE2"
+            ],
+            "enrollmentInfo": {
+              "count": 60
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "Avatrombopag"
+              },
+              {
+                "name": "Avatrombopag +rhTPO"
+              }
+            ]
+          }
+        },
+        "hasResults": false
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT02148133",
+            "briefTitle": "A Study to Assess the Safety and Efficacy of Eltrombopag in Japanese Subjects With Refractory, Moderate or More Severe Aplastic Anemia"
+          },
+          "statusModule": {
+            "overallStatus": "COMPLETED",
+            "startDateStruct": {
+              "date": "2014-07-23"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Cytopaenia"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE2"
+            ],
+            "enrollmentInfo": {
+              "count": 21
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "Eltrombopag 12.5 mg"
+              },
+              {
+                "name": "Eltrombopag 25 mg"
+              }
+            ]
+          }
+        },
+        "hasResults": true
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT07297550",
+            "briefTitle": "Safety and Efficacy of the JAK1 Inhibitor Combined With Intensive Immunosuppressive Therapy in Severe Aplastic Anemia"
+          },
+          "statusModule": {
+            "overallStatus": "NOT_YET_RECRUITING",
+            "startDateStruct": {
+              "date": "2025-12-15"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Severe Aplastic Anemia",
+              "Refractory Aplastic Anemia",
+              "Newly Diagnosed Aplastic Anemia"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE1",
+              "PHASE2"
+            ],
+            "enrollmentInfo": {
+              "count": 42
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "Golidocitinib Capsules"
+              }
+            ]
+          }
+        },
+        "hasResults": false
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT04403321",
+            "briefTitle": "Efficacy and Safety of Eltrombopag + Tacrolimus in Chinese Refractory or Relapsed Aplastic Anemia Patients"
+          },
+          "statusModule": {
+            "overallStatus": "COMPLETED",
+            "startDateStruct": {
+              "date": "2020-07-01"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Aplastic Anemia",
+              "Drug Effect"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE2"
+            ],
+            "enrollmentInfo": {
+              "count": 114
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "Tacrolimus"
+              },
+              {
+                "name": "Placebo (for Tacrolimus)"
+              }
+            ]
+          }
+        },
+        "hasResults": false
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT05720234",
+            "briefTitle": "Avatrombopag Combined With IST as First-line Treatment for SAA"
+          },
+          "statusModule": {
+            "overallStatus": "UNKNOWN",
+            "startDateStruct": {
+              "date": "2022-11-10"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Severe Aplastic Anemia"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE2"
+            ],
+            "enrollmentInfo": {
+              "count": 53
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "avatrombopag"
+              }
+            ]
+          }
+        },
+        "hasResults": false
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT04328727",
+            "briefTitle": "Combination of Eltrombopag With Immunosuppressive Therapy in East-Asian Patients With Severe Aplastic Anemia"
+          },
+          "statusModule": {
+            "overallStatus": "COMPLETED",
+            "startDateStruct": {
+              "date": "2020-11-04"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Severe Aplastic Anemia (SAA)"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE2"
+            ],
+            "enrollmentInfo": {
+              "count": 36
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "eltrombopag"
+              },
+              {
+                "name": "rabbit anti-thymocyte globulin (r-ATG)"
+              },
+              {
+                "name": "cyclosporine A (CsA)"
+              }
+            ]
+          }
+        },
+        "hasResults": true
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT01703169",
+            "briefTitle": "Efficacy and Safety of Eltrombopag In Patients With Severe and Very Severe Aplastic Anemia"
+          },
+          "statusModule": {
+            "overallStatus": "COMPLETED",
+            "startDateStruct": {
+              "date": "2012-11"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Severe Aplastic Anemia",
+              "Very Severe Aplastic Anemia",
+              "Moderate Aplastic Anemia"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE2"
+            ],
+            "enrollmentInfo": {
+              "count": 13
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "Eltrombopag"
+              }
+            ]
+          }
+        },
+        "hasResults": true
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT02998645",
+            "briefTitle": "Eltrombopag Combined With Cyclosporine as First Line Therapy in Patients With Severe Acquired Aplastic Anemia"
+          },
+          "statusModule": {
+            "overallStatus": "COMPLETED",
+            "startDateStruct": {
+              "date": "2017-05-11"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Severe Aplastic Anemia"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE2"
+            ],
+            "enrollmentInfo": {
+              "count": 54
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "eltrombopag"
+              },
+              {
+                "name": "Cyclosporine"
+              }
+            ]
+          }
+        },
+        "hasResults": true
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT04728789",
+            "briefTitle": "Avatrombopag Usage in NSAA"
+          },
+          "statusModule": {
+            "overallStatus": "UNKNOWN",
+            "startDateStruct": {
+              "date": "2021-02-01"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Aplastic Anemia",
+              "Drug Effect"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE2",
+              "PHASE3"
+            ],
+            "enrollmentInfo": {
+              "count": 40
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "Avatrombopag 20 MG"
+              }
+            ]
+          }
+        },
+        "hasResults": false
+      }
+    ]
+  }
+}

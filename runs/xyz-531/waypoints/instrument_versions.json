@@ -1,0 +1,37 @@
+{
+  "CTCAE": {
+    "version": "6.0",
+    "version_source": "NCI DCTD: https://dctd.cancer.gov/about/news-events/news/2026-news/ctcae-updated-version-6 ; CTCAE v6 FAQ (2025-09-09) https://dctd.cancer.gov/research/ctep-trials/for-sites/adverse-events/ctcae-v6-faq.pdf",
+    "license_holder": "U.S. National Cancer Institute (public domain)",
+    "license_required": false,
+    "checked_on": "2026-10-25",
+    "notes": "FAQ は v6.0 が CTEP/NCORP 以外の試験で直ちに使用可と記載。2026-01 に errata（検索結果の記載。errata の版は本文で [TBD]）。日本語訳（JCOG 版）の v6.0 の有無は未確認 → [TBD: CTCAE v6.0 日本語訳 — checked 2026-10-25, not confirmed]",
+    "seen_in_reference": "landscape 中の他試験で CTCAE v4.0 と v6.0"
+  },
+  "ECOG_PS": {
+    "version": null,
+    "version_source": "Oken MM et al. Am J Clin Oncol 1982;5:649-655（原著。版の概念なし）",
+    "license_holder": "ECOG-ACRIN（公開）",
+    "license_required": false,
+    "checked_on": "2026-10-25",
+    "seen_in_reference": "NCT00922883, NCT02148133, NCT02773290, NCT03557099"
+  },
+  "Camitta_severity_criteria": {
+    "version": null,
+    "version_source": "FDA clinical review NDA 22291/S-021 p.40-41 に定義の逐語あり（modified Camitta）",
+    "license_holder": null,
+    "license_required": false,
+    "checked_on": "2026-10-25",
+    "notes": "重症度・反応の定義。改訂版の公式な版番号は無い → 本文は FDA 審査資料の逐語の定義を使う",
+    "seen_in_reference": "NCT01623167"
+  },
+  "Bone_marrow_reticulin_grading": {
+    "version": null,
+    "version_source": "参照試験の記載のみ（Bone Marrow Pathology 2nd edition）。現行の標準（例 EUMS/WHO の線維化 grade）との対応は未確認",
+    "license_holder": null,
+    "license_required": false,
+    "checked_on": "2026-10-25",
+    "notes": "[TBD: reticulin grading system — checked 2026-10-25, not confirmed]",
+    "seen_in_reference": "NCT02773290"
+  }
+}

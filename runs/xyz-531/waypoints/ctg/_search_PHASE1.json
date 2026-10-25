@@ -1,0 +1,315 @@
+{
+  "query": {
+    "query.cond": "aplastic anemia",
+    "query.term": "AREA[Phase]PHASE1",
+    "filter.overallStatus": "COMPLETED,ACTIVE_NOT_RECRUITING,RECRUITING,TERMINATED,NOT_YET_RECRUITING,UNKNOWN",
+    "pageSize": "100",
+    "format": "json",
+    "fields": "NCTId,BriefTitle,Phase,OverallStatus,StartDate,EnrollmentCount,HasResults,Condition,InterventionName",
+    "query.intr": "eltrombopag OR romiplostim OR hetrombopag OR avatrombopag OR thrombopoietin OR TPO"
+  },
+  "result": {
+    "studies": [
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT05088174",
+            "briefTitle": "A Trial of Hetrombopag in Healthy Subjects"
+          },
+          "statusModule": {
+            "overallStatus": "COMPLETED",
+            "startDateStruct": {
+              "date": "2020-09-03"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Sever Aplastic Anaemia"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE1"
+            ],
+            "enrollmentInfo": {
+              "count": 26
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "Hetrombopag Olamine Tablet；Ciclosporin Soft Capsule"
+              }
+            ]
+          }
+        },
+        "hasResults": false
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT06607367",
+            "briefTitle": "REscuing Bone Marrow Function in Patients with AplaStic AnaEmia and Bone Marrow FaiLure Post AllogEneiC Transplantation 2"
+          },
+          "statusModule": {
+            "overallStatus": "NOT_YET_RECRUITING",
+            "startDateStruct": {
+              "date": "2024-10-30"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Poor Graft Function",
+              "Aplastic Anemia Idiopathic"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE1",
+              "PHASE2"
+            ],
+            "enrollmentInfo": {
+              "count": 20
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "Ruxolitinib (JAKAVI®)"
+              },
+              {
+                "name": "Eltrombopag (Revolade®)"
+              }
+            ]
+          }
+        },
+        "hasResults": false
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT04269889",
+            "briefTitle": "Treatment of Refractory Diamond-Blackfan Anemia With Eltrombopag"
+          },
+          "statusModule": {
+            "overallStatus": "COMPLETED",
+            "startDateStruct": {
+              "date": "2020-12-01"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Anemia, Diamond-Blackfan"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE1",
+              "PHASE2"
+            ],
+            "enrollmentInfo": {
+              "count": 15
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "Eltrombopag"
+              }
+            ]
+          }
+        },
+        "hasResults": true
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT03557099",
+            "briefTitle": "A Study to Evaluate the Safety and Efficacy of Hetrombopag Olamine in Severe Aplastic Anemia （SAA） Patient"
+          },
+          "statusModule": {
+            "overallStatus": "COMPLETED",
+            "startDateStruct": {
+              "date": "2018-06-20"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Severe Aplastic Anemia"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE1",
+              "PHASE2"
+            ],
+            "enrollmentInfo": {
+              "count": 55
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "Hetrombopag Olamine"
+              }
+            ]
+          }
+        },
+        "hasResults": false
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT01623167",
+            "briefTitle": "Eltrombopag With Standard Immunosuppression for Severe Aplastic Anemia"
+          },
+          "statusModule": {
+            "overallStatus": "ACTIVE_NOT_RECRUITING",
+            "startDateStruct": {
+              "date": "2012-07-02"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Severe Aplastic Anemia"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE1",
+              "PHASE2"
+            ],
+            "enrollmentInfo": {
+              "count": 207
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "Cohort 1: hATG, CsA, EPAG Day 14 to Month 6"
+              },
+              {
+                "name": "Cohort 2: hATG, CsA, EPAG Day 14 to Month 3"
+              },
+              {
+                "name": "Cohort 3: hATG, CsA (dose reduced), EPAG day 1 to month 6"
+              },
+              {
+                "name": "Extension Cohort"
+              }
+            ]
+          }
+        },
+        "hasResults": true
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT05088642",
+            "briefTitle": "A Trial of Hetrombopag in Healthy and Hepatic Impairment Subjects"
+          },
+          "statusModule": {
+            "overallStatus": "COMPLETED",
+            "startDateStruct": {
+              "date": "2020-09-28"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Sever Aplastic Anaemia"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE1"
+            ],
+            "enrollmentInfo": {
+              "count": 24
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "Hetrombopag Olamine Tablet"
+              }
+            ]
+          }
+        },
+        "hasResults": false
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT07297550",
+            "briefTitle": "Safety and Efficacy of the JAK1 Inhibitor Combined With Intensive Immunosuppressive Therapy in Severe Aplastic Anemia"
+          },
+          "statusModule": {
+            "overallStatus": "NOT_YET_RECRUITING",
+            "startDateStruct": {
+              "date": "2025-12-15"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Severe Aplastic Anemia",
+              "Refractory Aplastic Anemia",
+              "Newly Diagnosed Aplastic Anemia"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE1",
+              "PHASE2"
+            ],
+            "enrollmentInfo": {
+              "count": 42
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "Golidocitinib Capsules"
+              }
+            ]
+          }
+        },
+        "hasResults": false
+      },
+      {
+        "protocolSection": {
+          "identificationModule": {
+            "nctId": "NCT05088655",
+            "briefTitle": "A Bioequivalence Study of Hetrombopag in Healthy Subjects"
+          },
+          "statusModule": {
+            "overallStatus": "COMPLETED",
+            "startDateStruct": {
+              "date": "2021-06-25"
+            }
+          },
+          "conditionsModule": {
+            "conditions": [
+              "Sever Aplastic Anaemia"
+            ]
+          },
+          "designModule": {
+            "phases": [
+              "PHASE1"
+            ],
+            "enrollmentInfo": {
+              "count": 58
+            }
+          },
+          "armsInterventionsModule": {
+            "interventions": [
+              {
+                "name": "Hetrombopag Olamine Tablet"
+              }
+            ]
+          }
+        },
+        "hasResults": false
+      }
+    ]
+  }
+}

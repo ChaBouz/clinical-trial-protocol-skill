@@ -1,0 +1,69 @@
+{
+  "intervention_id": "xyz-531",
+  "intervention_type": "drug",
+  "indication_key": "aplastic_anemia",
+  "indication_input": "再生不良性貧血",
+  "indication_aliases_proposed": [
+    "aplastic anemia",
+    "AA",
+    "severe aplastic anemia",
+    "SAA",
+    "再生不良性貧血",
+    "重症再生不良性貧血"
+  ],
+  "disease_pack": "draft",
+  "precedents": "none（precedents/aplastic_anemia/ は無い。利用者提供の FDA 承認パッケージ NDA 22291 s021 を [PRIOR]/[PREC] の材料として使う。Step 1g 参照）",
+  "skill_scope_deviation": "skill は第2/3相が対象。利用者の了承（2026-10-25）を得て第1相に拡張: M11 の構成と出典ラベルは skill どおり、用量漸増・DLT・開始用量は [STD]/[DERIVED]、例数は検出力ではなく類似試験を参考にした設計上の数（利用者指示）",
+  "user_design": {
+    "product_name": "XYZ-531",
+    "modality_mechanism": "TPO 受容体作動性のモノクローナル抗体。eltrombopag と同じく、内因性 TPO と競合しない部位に結合する。皮下投与（SC）",
+    "drug_details_note": "新薬のため本剤固有の詳細（非臨床データ・CMC・IB）は記載しない → [TBD:IB]",
+    "indication_population": "重症再生不良性貧血（SAA）の患者で、免疫抑制療法（IST）に不応（insufficient response）の者",
+    "phase": 1,
+    "design": "非盲検、単群、用量漸増（BOIN または 3+3。最終選択は [TBD]）、単剤投与（IST 不応例）",
+    "arms": [
+      {
+        "name": "XYZ-531 SC 用量漸増コホート",
+        "regimen": "開始用量・用量段階・投与間隔 [TBD]（投与間隔は長いほど患者の利便性が高い、との利用者の意向）"
+      }
+    ],
+    "allocation_ratio": null,
+    "blinding": "open-label",
+    "treatment_period_weeks": null,
+    "primary_timepoint_week": null,
+    "follow_up_weeks": null,
+    "extension": null,
+    "regions": [
+      "Japan"
+    ],
+    "stratification": null,
+    "primary_endpoint_choice": "安全性・忍容性（DLT、有害事象）",
+    "comparison": "なし（単群。仮説検定なし）",
+    "sample_size_inputs": {
+      "method": "検出力計算ではなく、類似の第1相・初期試験を参考にした設計上の数（利用者指示 2026-10-25）"
+    },
+    "reference_nct_ids": [],
+    "reference_drugs": [
+      "eltrombopag（同じ作用機序）",
+      "romiplostim（モダリティが近い Fc 融合の TPO-RA。日本で再生不良性貧血の適応あり）"
+    ],
+    "sponsor_info": null,
+    "ib_known_risks": null,
+    "design_changes": "design_decisions.md"
+  },
+  "initial_context": "利用者提供: FDA 承認パッケージ NDA 22291 Orig1s021（PROMACTA/eltrombopag、2018-11-16 承認、SAA 初回治療の IST 併用。291 頁。https://www.accessdata.fda.gov/drugsatfda_docs/nda/2026/022291Orig1s021.pdf）。本剤の作用は eltrombopag と同等、モダリティは抗体として設定（利用者指示）。",
+  "created_date": "2026-10-25",
+  "completed_steps": [
+    0,
+    1,
+    2
+  ],
+  "reference_nct_ids": [
+    "NCT00922883",
+    "NCT02148133",
+    "NCT02094417",
+    "NCT02773290",
+    "NCT03557099",
+    "NCT01623167 (supplementary)"
+  ]
+}

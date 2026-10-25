@@ -1,0 +1,23 @@
+{
+  "method": "第1相: 検出力計算は行わない（仮説検定なし。利用者指示 2026-10-25「他試験を参考に症例数設計」）。scripts/sample_size.py は第2/3相の検定用のため使わず、下の数は scipy 1 回の計算（2026-10-25）",
+  "part_a": {
+    "design": "3+3",
+    "dose_levels_assumed": 4,
+    "dose_levels_src": "CTG:NCT02094417（romiplostim, SC, 1/3/6/10 µg/kg QW の 4 用量）。本剤の段階数は [TBD]",
+    "n_range": [12, 24],
+    "operating_characteristics_3plus3": {"true_DLT_rate": [0.1, 0.2, 0.3, 0.4, 0.5], "P_escalate": [0.906, 0.709, 0.494, 0.309, 0.172]},
+    "replacement": "DLT 評価不能例（DLT 期間内に DLT 以外の理由で中止、または規定投与を受けない例）は補充"
+  },
+  "part_b": {
+    "n_per_dose": 10,
+    "max_doses": 2,
+    "n_max": 20,
+    "src": "CTG:NCT02094417（有効用量の群で 9・10 例）、CTG:NCT02148133（日本人 21 例）",
+    "P_at_least_one_AE_by_n": {"n": [3, 6, 10, 12, 20], "rate_0.05": [0.143, 0.265, 0.401, 0.46, 0.642], "rate_0.10": [0.271, 0.469, 0.651, 0.718, 0.878], "rate_0.15": [0.386, 0.623, 0.803, 0.858, 0.961], "rate_0.20": [0.488, 0.738, 0.893, 0.931, 0.988]},
+    "precision_of_response_rate_CP95": {"4/10": [0.122, 0.738], "3/10": [0.067, 0.652], "7/10": [0.348, 0.933], "8/20": [0.191, 0.639], "4/12": [0.099, 0.651]},
+    "reference_response_rates": ["PRIOR:NDA22291-S021:label-14.3 Table 23: 17/43 (40%), 95% CI (25, 56)", "CTG:NCT02148133: 47.6% (n=21, Week 26)", "CTG:NCT02094417: platelet response Week 9 0/7, 0/7, 3/9, 7/10"]
+  },
+  "final_n_total": "12–44（Part A 12–24 ＋ Part B 最大 20）",
+  "driven_by": "Part A の 3+3 の規則（安全性）と、Part B の 1 用量 10 例で発現率 15% の事象を 80% の確率で 1 例以上観察できること",
+  "safety_exposure_ich_e1": "general 領域の既定は null。SAA は生命を脅かす疾患で第1相のため、ICH E1 の曝露目標はこの試験に割り当てない（--exposure-n 0 相当）"
+}

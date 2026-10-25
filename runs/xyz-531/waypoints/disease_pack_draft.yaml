@@ -1,0 +1,234 @@
+# disease_pack_draft.yaml — aplastic_anemia（Step 1e が CTG の参照試験 5 本 ＋ 補助 1 本から作った下書き。確定版ではない）
+# 作成 2026-10-25。参照試験: NCT00922883, NCT02148133, NCT02094417, NCT02773290, NCT03557099（主）／ NCT01623167（補助: 初回治療・IST 併用）
+# 利用者提供の FDA 承認パッケージ NDA 22291 Orig1s021（PROMACTA, 2018-11-16 承認）は PRIOR として src に書く（precedents/ の材料ではないため PREC: の ID は付けない）。
+# agreement は主 5 本のうち何本で同じか。
+
+meta:
+  disease: aplastic_anemia
+  aliases:
+  - aplastic anemia
+  - AA
+  - severe aplastic anemia
+  - SAA
+  - 再生不良性貧血
+  - 重症再生不良性貧血
+  therapeutic_area_family: general   # design_archetypes.yaml に血液領域が無い → 受け皿 general（重み付けなし）。Step 2 の確認で伝える
+  endpoint_archetype: binary_responder
+  population_default: '免疫抑制療法（ATG を含む IST）に不応・再発の再生不良性貧血で、血小板数 ≤30×10^9/L。src: CTG 5/5（NCT00922883, NCT02148133, NCT02094417, NCT02773290, NCT03557099）'
+  design_default: "非盲検・単群（NCT02094417 のみ無作為化の用量比較 4 群）。src CTG 4/5 SINGLE_GROUP・masking NONE 5/5"
+  primary_timepoint_default: '血液学的反応: Week 12–16（NCT00922883・FDA 表示）を既定、options に Week 9（NCT02094417）・Week 26/27（NCT02148133, NCT02773290）・18 週以内（NCT03557099）'
+  status: draft
+
+inclusion:
+- key: diagnosis
+  text: Diagnosis of aplastic anemia confirmed by peripheral blood and bone marrow examination
+  src: CTG:NCT02773290
+  agreement: 5/5（全試験が AA の診断を要求。重症度の定義は割れる → severity）
+- key: severity
+  text: 重症度の下限 [options]
+  options:
+  - 'severe AA（Camitta: 骨髄細胞密度 <30% かつ ANC <500/µL・血小板 <20,000/µL・網赤血球 <60,000/µL のうち 2 つ以上）[CTG:NCT01623167（補助）; CTG:NCT03557099 は "severe" のみ]'
+  - '中等症（stage 2）以上（厚労省 特発性造血障害調査研究班の基準）[CTG:NCT02148133]'
+  - '重症度の下限なし（AA かつ血小板 ≤30×10^9/L）[CTG:NCT00922883, NCT02094417, NCT02773290]'
+  src: CTG
+  agreement: 割れた → 利用者指定「重症再生不良性貧血」を USER として採る
+- key: refractory
+  text: Refractory to (insufficient response to) at least one course of ATG-based immunosuppressive therapy
+  src: CTG:NCT00922883
+  agreement: 5/5（NCT02148133・NCT02773290 は「ATG 不適格で CsA 不応」も含める）
+- key: platelets
+  text: Platelet count ≤ 30 × 10^9/L
+  src: CTG:NCT00922883
+  agreement: 5/5
+- key: age
+  text: 年齢の下限 [options]
+  options: ['≥12 y [CTG:NCT00922883]', '≥18 y [CTG:NCT02148133, NCT03557099]', '≥19 y [CTG:NCT02094417]', '≥20 y [CTG:NCT02773290]']
+  src: CTG
+  agreement: 割れた。成人（≥18）が 4/5
+- key: performance_status
+  text: ECOG PS 下限 [options]
+  options: ['0–1 [CTG:NCT02148133]', '0–2 [CTG:NCT02773290]', '≤2（3 以上を除外）[CTG:NCT00922883, NCT03557099]']
+  src: CTG
+  agreement: 'ECOG ≤2 が 3/5'
+- key: organ_function
+  text: Adequate organ function（閾値は options）
+  options:
+  - 'ALT/AST ≤3×ULN; total bilirubin <1.5×ULN; creatinine ≤2.0 mg/dL [CTG:NCT02773290]'
+  - 'ALT/AST ≤3×ULN; creatinine, total bilirubin, ALP <1.5×ULN [CTG:NCT02148133]'
+  - 'ALT/AST ≤2.5×ULN; DBil ≤1.5×ULN; Scr ≤ULN [CTG:NCT03557099]'
+  - 'SGOT/SGPT ≤5×ULN; bilirubin ≤2.0; creatinine ≤2.5 [CTG:NCT00922883]'
+  src: CTG
+  agreement: 'ALT/AST ≤3×ULN が 2/5、割れた → 既定なし [TBD]'
+
+exclusion:
+  medical:
+  - text: Congenital bone marrow failure (e.g., Fanconi anemia, dyskeratosis congenita)
+    src: CTG:NCT02148133
+    agreement: 2/5（NCT00922883, NCT02148133）
+  - text: Infection not adequately responding to appropriate therapy
+    src: CTG:NCT00922883
+    agreement: 4/5
+  - text: PNH clone ≥50% (neutrophils/granulocytes) または溶血優位の PNH
+    src: CTG:NCT00922883
+    agreement: 5/5（≥50% が 3/5、溶血優位 PNH が 2/5）
+  - text: Cytogenetic abnormality in bone marrow (e.g., -7/7q- by FISH or G-band aberration) / MDS
+    src: CTG:NCT02148133
+    agreement: 2/5（NCT02148133, NCT02773290）。ほかに骨髄芽球 >2%・細網線維 grade ≥2（NCT02773290）、grade >1（NCT02094417）
+  - text: Arterial or venous thrombosis within 1 year; anticoagulant use; antiphospholipid syndrome
+    src: CTG:NCT00922883
+    agreement: 5/5（期間は 1 年が 4/5、NCT02148133 は既往すべて）
+  - text: Clinically significant cardiac disease (NYHA III–IV, MI within 3–6 months, significant arrhythmia)
+    src: CTG:NCT02773290
+    agreement: 5/5（期間は割れる）
+  - text: Malignancy (history), except adequately treated localized tumors / disease-free ≥5 years
+    src: CTG:NCT02773290
+    agreement: 4/5
+  - text: HIV, HBV (HBsAg+), HCV positive
+    src: CTG:NCT02773290
+    agreement: 4/5
+  - text: Hepatic cirrhosis / portal hypertension
+    src: CTG:NCT02148133
+    agreement: 2/5
+  - text: Uncontrolled diabetes mellitus
+    src: CTG:NCT02094417
+    agreement: 2/5
+  - text: Pregnancy or lactation; contraception required
+    src: CTG:NCT02148133
+    agreement: 4/5
+  - text: Hypersensitivity to the IP or its components (抗体では他の抗体・タンパク製剤への重篤な過敏症を含める)
+    src: CTG:NCT02773290
+    agreement: '3/5（抗体への拡張は DERIVED）'
+  prior_therapy_washout:
+  - class: ATG（horse/rabbit）・alemtuzumab
+    washout: 'options: 6 months [CTG:NCT00922883, NCT02094417, NCT02773290, NCT03557099（IST 6 か月）]; 12 months [CTG:NCT02148133]'
+    src: CTG
+  - class: Cyclosporine・蛋白同化ステロイド
+    washout: 'options: 安定用量なら継続可 [CTG:NCT00922883, NCT02148133]; 6 週の休薬、ただし 6 か月以上使用し血球数が安定なら継続可 [CTG:NCT02773290]; 6 週休薬 [CTG:NCT02094417]'
+    src: CTG
+  - class: TPO 受容体作動薬（eltrombopag, romiplostim ほか）・rhTPO・PEG-rHuMGDF の前治療
+    washout: '前治療歴あれば除外 [CTG:NCT02148133, NCT02094417, NCT02773290]（3/5）'
+    src: CTG
+  - class: Other investigational product
+    washout: 'options: 30 days or 5 half-lives [CTG:NCT02148133]; 16 weeks [CTG:NCT02773290]; 3 months [CTG:NCT03557099]'
+    src: CTG
+  other:
+  - text: HSCT planned within 1 year (または HLA 一致同胞ドナーがいて HSCT が適応)
+    src: CTG:NCT02773290
+    agreement: 3/5
+  - text: Thrombocytopenia due to other causes (MDS, ITP, cirrhosis)
+    src: CTG:NCT02773290
+    agreement: 2/5
+
+endpoints:
+  primary:
+    default: 'Hematologic response（1 系統以上の反応）at Week 12–16'
+    options:
+    - 'Hematologic response at Week 12–16 [CTG:NCT00922883; PRIOR:NDA22291-S021:label-14.3]'
+    - 'Platelet response at Week 9 [CTG:NCT02094417]'
+    - 'Hematologic response at Week 26/27 [CTG:NCT02148133, NCT02773290]'
+    rules:
+    - '血小板反応: 基線から ≥20×10^9/L 増加、または輸血非依存で 8 週以上安定 [CTG:NCT00922883; PRIOR:NDA22291-S021:label-14.3]'
+    - '赤血球反応（基線 Hb <9 g/dL）: 輸血なしで Hb ≥1.5 g/dL 増加、または 8 週連続で RBC 輸血 ≥4 単位減少 [CTG:NCT00922883]'
+    - '好中球反応（基線 ANC <0.5×10^9/L）: ≥100% 増加、または >0.5×10^9/L 増加 [CTG:NCT00922883]'
+    - '代替の血小板反応: ≥20×10^9/L 増加、または ≥10×10^9/L かつ基線から ≥100% 増加 [CTG:NCT02094417]'
+    - '増殖因子・輸血による改善は反応に数えない（除外期間を事前規定）[PRIOR:NDA22291-S021:clinical-review-p40-41]'
+    src: CTG
+  key_secondary: []   # 第1相のため多重性管理下の副次は置かない
+  other_secondary:
+  - 'Platelet transfusion independence（8 週連続で輸血なし）[CTG:NCT02094417]'
+  - 'Time to response; duration of response [CTG:NCT02094417, NCT02148133]'
+  - 'Tri-lineage response [CTG:NCT02094417]'
+  - 'Transfusion volume/frequency [CTG:NCT02148133]'
+  exploratory:
+  - 'Clonal evolution（PNH, 新たな染色体異常, MDS/AML）までの時間 [PRIOR:NDA22291-S021:clinical-review-p40]'
+  safety:
+  - 'AE/SAE（CTCAE）[CTG:NCT02148133]'
+  - 'Bleeding events and severity [CTG:NCT02148133]'
+  - 'New cytogenetic abnormality in bone marrow [PRIOR:NDA22291-S021:label-6.1]'
+
+instruments:
+  CTCAE:
+    rater: investigator
+    notes: AE の重症度。版は Step 1f
+    seen_version_in_reference: '"CTCAE v4.0"（landscape 中の 1 試験）, "CTCAE v6.0"（landscape 中の 1 試験）'
+  ECOG_PS:
+    rater: investigator
+    notes: 適格性
+    seen_version_in_reference: null
+  bone_marrow_reticulin_grade:
+    rater: pathologist
+    notes: 'Bone Marrow Pathology (2nd edition) の細網線維の grade [CTG:NCT02773290]'
+    seen_version_in_reference: 'Bone Marrow Pathology (2nd edition)'
+
+rescue_table:
+  rows:
+  - therapy: 血小板輸血・RBC 輸血（支持療法）
+    ip_action: 継続
+    estimand_ice: 反応判定の期間に輸血が要れば非反応（輸血非依存の定義に含む）
+    src: CTG:NCT00922883
+  - therapy: G-CSF
+    ip_action: 継続
+    estimand_ice: 'G-CSF 使用中の ANC 改善は好中球反応に数えない [CTG:NCT02148133（"in the absence of G-CSF"）]'
+    src: CTG:NCT02148133
+  - therapy: 新たな IST（ATG・CsA の開始/増量）、HSCT、他の TPO-RA
+    ip_action: 中止
+    estimand_ice: composite（以後は非反応）
+    src: DERIVED
+  rules:
+  - 'CsA・蛋白同化ステロイドは安定用量なら継続可（参照試験 2/5）。用量変更は ICE として記録 [CTG:NCT00922883, NCT02148133]'
+
+estimands:
+  intercurrent_events:
+  - {ice: 'IST/HSCT/他の TPO-RA の開始', strategy: composite, handling: '以後は非反応', src: DERIVED}
+  - {ice: 'IP の恒久的中止（DLT・AE・同意撤回）', strategy: treatment_policy, handling: '中止後も血球数を追跡', src: 'STD'}
+  - {ice: '増殖因子・輸血による一時的改善', strategy: composite, handling: '除外期間内の値は反応に数えない', src: 'PRIOR:NDA22291-S021:clinical-review-p41'}
+  supportive_estimands: []
+  population_level_summary: 'proportion with 95% exact (Clopper–Pearson) CI（記述のみ）[CTG:NCT02094417 "two-sided 95% confidence interval"]'
+
+analysis:
+  primary: '記述統計（割合と 95% CI）。用量群ごと [CTG:NCT02094417, NCT02148133]'
+  missing_data: '判定不能は非反応（NRI）[STD]'
+  multiplicity: 'なし（仮説検定を置かない）'
+  stratification_default: null
+  covariates: []
+  subgroups: ['基線の輸血依存', '前 IST の回数', 'CsA 併用の有無']
+
+sample_size_priors:
+  rule: 'CTG resultsSection と FDA 表示から。取得日 2026-10-25'
+  candidates:
+  - {source: 'CTG:NCT00922883 resultsSection', endpoint: 'hematologic response 12–16 wk', n: 43, responders: 17}
+  - {source: 'PRIOR:NDA22291-S021:label-14.3 Table 23', endpoint: 'hematologic response', n: 43, rate: '17 (40)', ci95: '(25, 56)'}
+  - {source: 'CTG:NCT02148133 resultsSection', endpoint: 'hematologic response Week 26', n: 21, rate_pct: 47.6}
+  - {source: 'CTG:NCT02094417 resultsSection', endpoint: 'platelet response Week 9 by dose（1/3/6/10 µg/kg QW SC）', n_by_dose: [7, 7, 9, 10], responders_by_dose: [0, 0, 3, 7]}
+
+safety_monitoring:
+  aesi_candidates_by_mechanism:
+  - '肝毒性（eltrombopag の boxed warning。抗体での発現は不明）[PRIOR:NDA22291-S021:label-5.2]'
+  - '血栓塞栓症 [PRIOR:NDA22291-S021:label-5.4]'
+  - '新たな染色体異常・クローン進展（MDS/AML）[PRIOR:NDA22291-S021:label-6.1]'
+  - '骨髄の細網線維増生 [PRIOR:NDA22291-S021:clinical-review-8.5]'
+  - '中止後の血小板減少の再発 [PRIOR:NDA22291-S021:clinical-review-8.5]'
+  - '出血 [PRIOR:NDA22291-S021:clinical-review-8.5]'
+  - '抗薬物抗体（ADA）と中和抗体による交差反応性の血小板減少（抗体医薬としての理論的リスク）[DERIVED]'
+  - '注射部位反応・過敏症・infusion/injection reaction [DERIVED]'
+  disease_specific:
+  - '骨髄検査（形態・細胞密度・細網線維・染色体）を基線と規定時点で [PRIOR:NDA22291-S021:clinical-review-p37]'
+  - 'PNH クローン（フローサイトメトリー）[PRIOR:NDA22291-S021:clinical-review-p41]'
+
+soa_rows:
+- 同意・適格性
+- 骨髄穿刺・生検（形態・細胞密度・細網線維・染色体 G 分染/FISH）
+- 血算・網赤血球
+- 肝機能（ALT/AST/T-Bil）
+- 生化学・凝固
+- PNH クローン
+- 輸血の記録
+- 出血の評価
+- PK 採血
+- ADA・中和抗体
+- PD（TPO 濃度など [TBD]）
+- 投与（SC）
+- AE・併用薬
+
+regional:
+  japan: '日本人の参照: NCT02148133（eltrombopag, 日本 12 施設）、NCT02773290（romiplostim, 日本・韓国）。eltrombopag は東アジア人で開始用量を減らす表示 [PRIOR:NDA22291-S021:label-2.3]'
