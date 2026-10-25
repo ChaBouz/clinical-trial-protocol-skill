@@ -56,7 +56,9 @@
   "completed_steps": [
     0,
     1,
-    2
+    2,
+    3,
+    4
   ],
   "reference_nct_ids": [
     "NCT00922883",
@@ -65,5 +67,13 @@
     "NCT02773290",
     "NCT03557099",
     "NCT01623167 (supplementary)"
-  ]
+  ],
+  "user_confirmation_step2": {
+    "date": "2026-10-25",
+    "prior_tpo_ra": "許容。TPO-RA 不応・不耐例を別に記述（Claude の解釈）",
+    "reticulocyte_threshold": "< 20 × 10^9/L",
+    "part_b": "置く",
+    "escalation": "3+3",
+    "language": "日本語"
+  }
 }

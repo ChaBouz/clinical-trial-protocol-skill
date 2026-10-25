@@ -1,143 +1,485 @@
 {
-  "_note": "Step 2 の正典（2026-10-25）。第1相（skill の対象外を利用者了承のうえ拡張）。全節はここからだけ書く（E2）。設計変更・提案は design_decisions.md の D#。",
-  "design": {
-    "phase": 1,
-    "type": "open-label, single-arm (sequential dose cohorts), multicenter, first-in-human, dose-escalation study with a dose-expansion part",
-    "parts": [
-      {"part": "A", "name": "Dose escalation", "method": "3+3 dose escalation", "cohort_size": "3 to 6 participants per dose level", "dose_levels": "[TBD: starting dose (MABEL-based) and dose levels; 4 levels assumed for planning]", "src": "USER (3+3 or BOIN; recommendation accepted) + STD (3+3) + CTG:NCT02094417 (4 dose levels, planning assumption)"},
-      {"part": "B", "name": "Dose expansion", "method": "up to 2 dose levels selected by the Safety Review Committee from Part A", "cohort_size": "10 participants per selected dose level", "src": "DERIVED (D3) + CTG:NCT02094417 (9–10 participants per dose level at the active doses)"}
-    ],
-    "arms": [
-      {"name": "XYZ-531 SC", "regimen": "XYZ-531 subcutaneous injection; dose and dosing interval [TBD] (a longer dosing interval is preferred for participant convenience)", "src": "USER"}
-    ],
-    "ratio": null,
-    "strata": null,
-    "blinding": "open-label",
-    "background_therapy": "Cyclosporine and/or anabolic steroids at a stable dose may be continued (no dose change during the core period)",
-    "periods": {
-      "screening_days": "[TBD]",
-      "dlt_window": "[TBD: DLT evaluation period]",
-      "core_treatment_weeks": 16,
-      "extension": "Participants with a hematologic response at Week 16 may continue XYZ-531 in the extension period until [TBD]",
-      "safety_follow_up_after_last_dose": "[TBD: based on XYZ-531 half-life (about 5 half-lives)]",
-      "src": {"core_treatment_weeks": "PRIOR:NDA22291-S021:label-2.3 (response may take up to 16 weeks; discontinue if no response after 16 weeks)", "extension": "CTG:NCT00922883 (responders continue in extension)"}
-    },
-    "archetype": {"endpoint": "binary_responder (efficacy, descriptive only)", "comparison": "none (single-arm; no hypothesis testing)", "family": "general"},
-    "region": {"countries": ["Japan"], "src": "USER"},
-    "src": {"arms": "USER", "parts": "USER + DERIVED"}
-  },
-  "population": {
-    "summary": "Adults with severe aplastic anemia who had an insufficient response to at least one course of ATG-based immunosuppressive therapy and who have a platelet count ≤ 30 × 10^9/L",
-    "inclusion": [
-      {"key": "age", "text": "Age ≥ 18 years at the time of informed consent", "src": "CTG:NCT02148133, NCT03557099 (4/5 trials adults)"},
-      {"key": "severity", "text": "Severe aplastic anemia: bone marrow cellularity < 30% (excluding lymphocytes) and at least two of the following at diagnosis: ANC < 0.5 × 10^9/L, platelet count < 20 × 10^9/L, reticulocyte count < [TBD: 20 or 60] × 10^9/L", "src": "USER (severe) + CTG:NCT01623167 + PRIOR:NDA22291-S021 (reticulocyte threshold differs within the source → TBD)"},
-      {"key": "refractory", "text": "Insufficient response to at least one course of ATG-based immunosuppressive therapy (horse or rabbit ATG with or without cyclosporine)", "src": "CTG:NCT00922883 + PRIOR:NDA22291-S021:label-14.3 (5/5)"},
-      {"key": "platelets", "text": "Platelet count ≤ 30 × 10^9/L at screening", "src": "CTG:NCT00922883 (5/5) + PRIOR:NDA22291-S021:label-14.3"},
-      {"key": "ecog", "text": "ECOG performance status 0–2", "src": "CTG:NCT02773290 (≤2 in 3/5)"},
-      {"key": "organ", "text": "Adequate organ function: ALT and AST ≤ 3 × ULN; total bilirubin < 1.5 × ULN; serum creatinine ≤ 2.0 mg/dL", "src": "CTG:NCT02773290 (thresholds split across trials; options in pack)"},
-      {"key": "hsct", "text": "Not eligible for, or declines, hematopoietic stem cell transplantation, and no HSCT planned within 1 year", "src": "CTG:NCT02773290, NCT03557099"},
-      {"key": "contraception", "text": "Agreement to use contraception for the duration specified in Section 5 ([TBD: period after last dose based on half-life])", "src": "STD"},
-      {"key": "consent", "text": "Written informed consent", "src": "STD"}
-    ],
-    "exclusion": [
-      {"text": "Congenital bone marrow failure syndrome (e.g., Fanconi anemia, dyskeratosis congenita)", "src": "CTG:NCT02148133, NCT00922883"},
-      {"text": "Cytogenetic abnormality in bone marrow (G-banding or FISH for -7/7q-), bone marrow blasts > 2%, or reticulin fibrosis grade ≥ 2; diagnosis of MDS or AML", "src": "CTG:NCT02148133, NCT02773290"},
-      {"text": "PNH granulocyte clone ≥ 50% or hemolysis-predominant PNH", "src": "CTG (5/5)"},
-      {"text": "Infection not adequately responding to appropriate therapy", "src": "CTG (4/5)"},
-      {"text": "Arterial or venous thrombosis within 1 year, ongoing anticoagulant therapy, or antiphospholipid syndrome", "src": "CTG:NCT00922883, NCT02773290, NCT02148133"},
-      {"text": "Clinically significant cardiac disease (NYHA class III–IV, myocardial infarction within 6 months, clinically significant arrhythmia)", "src": "CTG:NCT02773290"},
-      {"text": "Malignancy within 5 years except adequately treated localized tumors", "src": "CTG:NCT02773290, NCT02148133"},
-      {"text": "HIV antibody positive, HBs antigen positive, or HCV RNA positive", "src": "CTG:NCT02773290"},
-      {"text": "Liver cirrhosis or portal hypertension", "src": "CTG:NCT02148133, NCT03557099"},
-      {"text": "History of severe hypersensitivity to monoclonal antibodies or other therapeutic proteins, or to any component of XYZ-531", "src": "CTG:NCT02773290 (hypersensitivity) + DERIVED (antibody)"},
-      {"text": "Prior TPO receptor agonist (eltrombopag, romiplostim, other) or recombinant TPO: [TBD: exclude or allow — see design_decisions D5]", "src": "CTG:NCT02148133, NCT02094417, NCT02773290 (excluded in 3/5)"},
-      {"text": "Pregnancy or breastfeeding", "src": "CTG (4/5)"}
-    ],
-    "washout_table": [
-      {"class": "ATG (horse/rabbit), alemtuzumab", "washout": "6 months", "src": "CTG:NCT00922883, NCT02094417, NCT02773290, NCT03557099 (4/5)"},
-      {"class": "Cyclosporine, anabolic steroids", "washout": "Not required if on a stable dose with stable blood counts; dose must not change during the core period", "src": "CTG:NCT00922883, NCT02148133, NCT02773290"},
-      {"class": "Other investigational product", "washout": "[TBD: 30 days or 5 half-lives / 16 weeks / 3 months]", "src": "CTG (split)"}
-    ]
-  },
-  "endpoints": [
-    {"id": "P1", "level": "primary", "text": "Incidence of dose-limiting toxicities (DLTs) during the DLT evaluation period in Part A", "timepoint": "DLT evaluation period", "type": "count", "src": "STD (FIH dose escalation)"},
-    {"id": "P2", "level": "primary", "text": "Incidence and severity of treatment-emergent adverse events (TEAEs), graded by NCI CTCAE v6.0", "timepoint": "Week 16", "type": "count", "src": "STD + INSTR:CTCAE:2026-10-25", "note": "Core-period analysis at Week 16; TEAEs also summarized through the end of the extension and safety follow-up"},
-    {"id": "S1", "level": "secondary", "text": "Serum pharmacokinetic parameters of XYZ-531 after single and multiple SC doses (Cmax, Tmax, AUC, t1/2, Ctrough)", "timepoint": "Week 16", "type": "continuous", "src": "STD + CTG:NCT02148133 (PK as secondary)"},
-    {"id": "S2", "level": "secondary", "text": "Incidence of anti-drug antibodies (ADA) and neutralizing antibodies against XYZ-531", "timepoint": "Week 16", "type": "binary", "src": "STD (FDA Immunogenicity Testing guidance) + PRIOR:NDA22291-S021:clinical-review-8.4.10 (no immunogenicity data for the small-molecule precedent)"},
-    {"id": "S3", "level": "secondary", "text": "Proportion of participants with a hematologic response at Week 16", "timepoint": "Week 16", "type": "binary", "src": "PRIOR:NDA22291-S021:label-14.3 + CTG:NCT00922883"},
-    {"id": "S4", "level": "secondary", "text": "Proportion of participants with a platelet response at Week 8", "timepoint": "Week 8", "type": "binary", "src": "CTG:NCT02094417 (early platelet response at Week 9; Week 8 aligns with the visit schedule, D7)"},
-    {"id": "S5", "level": "secondary", "text": "Proportion of participants achieving platelet transfusion independence (no platelet transfusion for at least 8 consecutive weeks) by Week 16", "timepoint": "Week 16", "type": "binary", "src": "CTG:NCT02094417"},
-    {"id": "E1", "level": "exploratory", "text": "Change from baseline in platelet count, hemoglobin, ANC and reticulocyte count over time", "timepoint": "Week 16", "type": "continuous", "src": "CTG:NCT02148133"},
-    {"id": "E2", "level": "exploratory", "text": "Time to hematologic response and duration of hematologic response", "timepoint": "End of extension", "type": "time_to_event", "src": "CTG:NCT02094417, NCT02148133"},
-    {"id": "E3", "level": "exploratory", "text": "Incidence of clonal evolution (new bone marrow cytogenetic abnormality, MDS/AML, or PNH clone expansion)", "timepoint": "End of extension", "type": "binary", "src": "PRIOR:NDA22291-S021:clinical-review-p40-41"}
+ "_note": "Step 2 の正典（2026-10-25、利用者確認 2026-10-25 を反映）。本文は日本語（利用者指定）。endpoints[].text と ice は日本語が正典。全節はここからだけ書く（E2）。",
+ "design": {
+  "phase": 1,
+  "type": "open-label, single-arm (sequential dose cohorts), multicenter, first-in-human, dose-escalation study with a dose-expansion part",
+  "parts": [
+   {
+    "part": "A",
+    "name": "Dose escalation",
+    "method": "3+3 dose escalation",
+    "cohort_size": "3 to 6 participants per dose level",
+    "dose_levels": "[TBD: starting dose (MABEL-based) and dose levels; 4 levels assumed for planning]",
+    "src": "USER（3+3 を確認 2026-10-25）+ STD + CTG:NCT02094417（4 用量、計画上の仮定）"
+   },
+   {
+    "part": "B",
+    "name": "Dose expansion",
+    "method": "up to 2 dose levels selected by the Safety Review Committee from Part A",
+    "cohort_size": "10 participants per selected dose level",
+    "src": "USER（Part B を置く、確認 2026-10-25）+ CTG:NCT02094417"
+   }
   ],
-  "response_definitions": {
-    "hematologic_response": "Meeting 1 or more of: (1) platelet response — platelet count increase to ≥ 20 × 10^9/L above baseline, or stable platelet counts with platelet transfusion independence for a minimum of 8 weeks; (2) erythroid response (baseline hemoglobin < 9 g/dL) — hemoglobin increase by > 1.5 g/dL without RBC transfusion, or a reduction of ≥ 4 units of RBC transfusions for 8 consecutive weeks compared with the 8 weeks before treatment; (3) neutrophil response (baseline ANC < 0.5 × 10^9/L) — ANC increase of ≥ 100% or > 0.5 × 10^9/L",
-    "platelet_response": "Criterion (1) of the hematologic response",
-    "exclusion_window": "Values measured within [TBD] days after platelet transfusion, within [TBD] days after RBC transfusion, or during G-CSF use are not used to assess response",
-    "src": "PRIOR:NDA22291-S021:label-14.3 + CTG:NCT00922883 (verbatim match) + PRIOR:NDA22291-S021:clinical-review-p41 (growth factor/transfusion not counted)"
-  },
-  "dlt_definition": {
-    "text": "Any of the following events occurring during the DLT evaluation period and assessed as at least possibly related to XYZ-531: (a) Grade ≥ 3 non-hematologic TEAE (CTCAE v6.0), except Grade 3 nausea, vomiting or diarrhea resolving to ≤ Grade 1 within [TBD] days with supportive care; (b) any thromboembolic event; (c) ALT or AST > [TBD] × ULN, or ALT or AST > 3 × ULN with total bilirubin > 1.5 × ULN (concurrent); (d) platelet count > 400 × 10^9/L; (e) Grade ≥ 3 hypersensitivity or injection-site reaction; (f) new bone marrow cytogenetic abnormality or increase in bone marrow blasts; (g) any other toxicity judged dose-limiting by the Safety Review Committee. Worsening of cytopenias attributable to the underlying aplastic anemia is not a DLT unless the Safety Review Committee judges otherwise.",
-    "src": "STD (FIH) + PRIOR:NDA22291-S021:label-6.1 (ALT/AST > 3 × ULN with total bilirubin > 1.5 × ULN; new cytogenetic abnormality) + PRIOR:NDA22291-S021:label-2.3 Table 7 (> 400 × 10^9/L) + DERIVED"
-  },
-  "dose_modification": [
-    {"condition": "Platelet count 200 × 10^9/L to 400 × 10^9/L at any time", "action": "Reduce to the next lower dose level (or extend the interval) [DERIVED]", "src": "PRIOR:NDA22291-S021:label-2.3 Table 7 (threshold)"},
-    {"condition": "Platelet count > 400 × 10^9/L", "action": "Withhold XYZ-531 until platelet count < 150 × 10^9/L, then resume at the next lower dose level", "src": "PRIOR:NDA22291-S021:label-2.3 Table 7 (thresholds) + DERIVED (antibody: withhold the next dose rather than 1 week)"},
-    {"condition": "ALT or AST > 6 × ULN", "action": "Withhold XYZ-531; resume at the same or lower dose only after ALT/AST < 5 × ULN and Medical Monitor agreement", "src": "PRIOR:NDA22291-S021:label-2.3 Table 6 (thresholds)"},
-    {"condition": "Thromboembolic event", "action": "Permanently discontinue XYZ-531", "src": "PRIOR:NDA22291-S021:label-2.3 Table 6"},
-    {"condition": "No hematologic response after 16 weeks", "action": "Discontinue XYZ-531", "src": "PRIOR:NDA22291-S021:label-2.3"},
-    {"condition": "New cytogenetic abnormality", "action": "Discontinue XYZ-531 (consider; Safety Review Committee review)", "src": "PRIOR:NDA22291-S021:label-2.3"}
+  "arms": [
+   {
+    "name": "XYZ-531 SC",
+    "regimen": "XYZ-531 subcutaneous injection; dose and dosing interval [TBD] (a longer dosing interval is preferred for participant convenience)",
+    "src": "USER"
+   }
   ],
-  "estimands": {
-    "_note": "第1相のため estimand は記述的。S3（Week 16 の血液学的反応）にだけ 5 属性を置く。",
-    "intercurrent_events": [
-      {"ice": "Initiation of new immunosuppressive therapy, HSCT, or another TPO receptor agonist", "strategy": "composite", "handling": "non-responder from the ICE onward", "src": "DERIVED + PACK:aplastic_anemia (draft)"},
-      {"ice": "Permanent discontinuation of XYZ-531", "strategy": "treatment policy", "handling": "blood counts collected after discontinuation are used", "src": "STD"},
-      {"ice": "Change in dose of background cyclosporine or anabolic steroids", "strategy": "composite", "handling": "non-responder from the ICE onward", "src": "CTG:NCT02773290 (stable dose required) + DERIVED"},
-      {"ice": "Transfusion or G-CSF within the exclusion window before a response assessment", "strategy": "composite", "handling": "the affected blood count value is not used to establish response", "src": "PRIOR:NDA22291-S021:clinical-review-p41"}
-    ],
-    "population_level_summary": "Proportion with exact (Clopper–Pearson) 95% CI by dose level; no hypothesis testing",
-    "missing": "Participants without an evaluable Week 16 assessment are non-responders (NRI)"
+  "ratio": null,
+  "strata": null,
+  "blinding": "open-label",
+  "background_therapy": "Cyclosporine and/or anabolic steroids at a stable dose may be continued (no dose change during the core period)",
+  "periods": {
+   "screening_days": "[TBD]",
+   "dlt_window": "[TBD: DLT evaluation period]",
+   "core_treatment_weeks": 16,
+   "extension": "Participants with a hematologic response at Week 16 may continue XYZ-531 in the extension period until [TBD]",
+   "safety_follow_up_after_last_dose": "[TBD: based on XYZ-531 half-life (about 5 half-lives)]",
+   "src": {
+    "core_treatment_weeks": "PRIOR:NDA22291-S021:label-2.3 (response may take up to 16 weeks; discontinue if no response after 16 weeks)",
+    "extension": "CTG:NCT00922883 (responders continue in extension)"
+   }
   },
-  "rescue": [
-    {"therapy": "Platelet or RBC transfusion (supportive)", "ip_action": "continue", "estimand_ice": "Transfusion or G-CSF within the exclusion window before a response assessment", "src": "CTG:NCT00922883"},
-    {"therapy": "G-CSF", "ip_action": "continue", "estimand_ice": "Transfusion or G-CSF within the exclusion window before a response assessment", "src": "CTG:NCT02148133"},
-    {"therapy": "New immunosuppressive therapy (ATG, start of cyclosporine), HSCT, or another TPO receptor agonist", "ip_action": "discontinue", "estimand_ice": "Initiation of new immunosuppressive therapy, HSCT, or another TPO receptor agonist", "src": "DERIVED"},
-    {"therapy": "Dose change of background cyclosporine or anabolic steroids", "ip_action": "continue", "estimand_ice": "Change in dose of background cyclosporine or anabolic steroids", "src": "DERIVED"}
+  "archetype": {
+   "endpoint": "binary_responder (efficacy, descriptive only)",
+   "comparison": "none (single-arm; no hypothesis testing)",
+   "family": "general"
+  },
+  "region": {
+   "countries": [
+    "Japan"
+   ],
+   "src": "USER"
+  },
+  "src": {
+   "arms": "USER",
+   "parts": "USER + DERIVED"
+  }
+ },
+ "population": {
+  "summary": "Adults with severe aplastic anemia who had an insufficient response to at least one course of ATG-based immunosuppressive therapy and who have a platelet count ≤ 30 × 10^9/L",
+  "inclusion": [
+   {
+    "key": "age",
+    "text": "Age ≥ 18 years at the time of informed consent",
+    "src": "CTG:NCT02148133, NCT03557099 (4/5 trials adults)"
+   },
+   {
+    "key": "severity",
+    "text": "重症再生不良性貧血: 診断時に骨髄細胞密度 < 30%（リンパ球を除く）、かつ好中球数 < 0.5 × 10^9/L、血小板数 < 20 × 10^9/L、網赤血球数 < 20 × 10^9/L のうち 2 項目以上を満たす",
+    "src": "USER（重症、網赤血球 < 20,000/µL を確認 2026-10-25）+ PRIOR:NDA22291-S021:summary-review"
+   },
+   {
+    "key": "refractory",
+    "text": "Insufficient response to at least one course of ATG-based immunosuppressive therapy (horse or rabbit ATG with or without cyclosporine)",
+    "src": "CTG:NCT00922883 + PRIOR:NDA22291-S021:label-14.3 (5/5)"
+   },
+   {
+    "key": "platelets",
+    "text": "Platelet count ≤ 30 × 10^9/L at screening",
+    "src": "CTG:NCT00922883 (5/5) + PRIOR:NDA22291-S021:label-14.3"
+   },
+   {
+    "key": "prior_tpo_ra",
+    "text": "TPO 受容体作動薬（TPO-RA）の治療歴は問わない。治療歴がある場合は、TPO-RA に不応又は不耐であったことが診療録で確認できること",
+    "src": "USER（確認 2026-10-25: TPO-RA 既治療を許容し、不応・不耐例を別に記述）"
+   },
+   {
+    "key": "ecog",
+    "text": "ECOG performance status 0–2",
+    "src": "CTG:NCT02773290 (≤2 in 3/5)"
+   },
+   {
+    "key": "organ",
+    "text": "Adequate organ function: ALT and AST ≤ 3 × ULN; total bilirubin < 1.5 × ULN; serum creatinine ≤ 2.0 mg/dL",
+    "src": "CTG:NCT02773290 (thresholds split across trials; options in pack)"
+   },
+   {
+    "key": "hsct",
+    "text": "Not eligible for, or declines, hematopoietic stem cell transplantation, and no HSCT planned within 1 year",
+    "src": "CTG:NCT02773290, NCT03557099"
+   },
+   {
+    "key": "contraception",
+    "text": "Agreement to use contraception for the duration specified in Section 5 ([TBD: period after last dose based on half-life])",
+    "src": "STD"
+   },
+   {
+    "key": "consent",
+    "text": "Written informed consent",
+    "src": "STD"
+   }
   ],
-  "multiplicity": {"note": "none — no hypothesis testing (Phase 1)"},
-  "sample_size": {
-    "see": "waypoints/sample_size.json",
-    "part_a": "12 to 24 participants (3 to 6 per dose level × 4 assumed dose levels)",
-    "part_b": "up to 20 participants (10 per dose level × up to 2 dose levels)",
-    "total_planned": "up to 44 participants (DLT-non-evaluable participants in Part A are replaced)",
-    "src": "STD (3+3) + CTG:NCT02094417 (4 dose levels; 7–10 per dose) + calculation (sample_size.json)"
+  "exclusion": [
+   {
+    "text": "Congenital bone marrow failure syndrome (e.g., Fanconi anemia, dyskeratosis congenita)",
+    "src": "CTG:NCT02148133, NCT00922883"
+   },
+   {
+    "text": "Cytogenetic abnormality in bone marrow (G-banding or FISH for -7/7q-), bone marrow blasts > 2%, or reticulin fibrosis grade ≥ 2; diagnosis of MDS or AML",
+    "src": "CTG:NCT02148133, NCT02773290"
+   },
+   {
+    "text": "PNH granulocyte clone ≥ 50% or hemolysis-predominant PNH",
+    "src": "CTG (5/5)"
+   },
+   {
+    "text": "Infection not adequately responding to appropriate therapy",
+    "src": "CTG (4/5)"
+   },
+   {
+    "text": "Arterial or venous thrombosis within 1 year, ongoing anticoagulant therapy, or antiphospholipid syndrome",
+    "src": "CTG:NCT00922883, NCT02773290, NCT02148133"
+   },
+   {
+    "text": "Clinically significant cardiac disease (NYHA class III–IV, myocardial infarction within 6 months, clinically significant arrhythmia)",
+    "src": "CTG:NCT02773290"
+   },
+   {
+    "text": "Malignancy within 5 years except adequately treated localized tumors",
+    "src": "CTG:NCT02773290, NCT02148133"
+   },
+   {
+    "text": "HIV antibody positive, HBs antigen positive, or HCV RNA positive",
+    "src": "CTG:NCT02773290"
+   },
+   {
+    "text": "Liver cirrhosis or portal hypertension",
+    "src": "CTG:NCT02148133, NCT03557099"
+   },
+   {
+    "text": "History of severe hypersensitivity to monoclonal antibodies or other therapeutic proteins, or to any component of XYZ-531",
+    "src": "CTG:NCT02773290 (hypersensitivity) + DERIVED (antibody)"
+   },
+   {
+    "text": "Pregnancy or breastfeeding",
+    "src": "CTG (4/5)"
+   }
+  ],
+  "washout_table": [
+   {
+    "class": "ATG (horse/rabbit), alemtuzumab",
+    "washout": "6 months",
+    "src": "CTG:NCT00922883, NCT02094417, NCT02773290, NCT03557099 (4/5)"
+   },
+   {
+    "class": "Cyclosporine, anabolic steroids",
+    "washout": "Not required if on a stable dose with stable blood counts; dose must not change during the core period",
+    "src": "CTG:NCT00922883, NCT02148133, NCT02773290"
+   },
+   {
+    "class": "Other investigational product",
+    "washout": "[TBD: 30 days or 5 half-lives / 16 weeks / 3 months]",
+    "src": "CTG (split)"
+   },
+   {
+    "class": "TPO-RA（eltrombopag、romiplostim ほか）・遺伝子組換え TPO",
+    "washout": "[TBD]",
+    "src": "USER（TPO-RA 既治療を許容）+ DERIVED（PD の交絡を避けるため休薬期間を置く）"
+   }
+  ],
+  "subgroups": [
+   {
+    "name": "TPO-RA 既治療（不応・不耐）",
+    "src": "USER"
+   },
+   {
+    "name": "TPO-RA 未治療",
+    "src": "USER"
+   }
+  ]
+ },
+ "endpoints": [
+  {
+   "id": "P1",
+   "level": "primary",
+   "text": "Part A の DLT 評価期間における用量制限毒性（DLT）の発現",
+   "timepoint": "DLT 評価期間",
+   "type": "count",
+   "src": "STD (FIH dose escalation)",
+   "text_en": "Incidence of dose-limiting toxicities (DLTs) during the DLT evaluation period in Part A"
   },
-  "committees": {"safety_review_committee": "Sponsor medical monitor, principal investigators of active sites, [TBD]; decides dose escalation, selection of Part B doses", "src": "STD"},
-  "soa": {
-    "visits": [
-      {"name": "Screening", "week": "[TBD] (Day -28 to Day -1 assumed)"},
-      {"name": "Day 1", "week": 0},
-      {"name": "Day 2", "week": "Day 2"},
-      {"name": "Day 4", "week": "Day 4"},
-      {"name": "Week 1", "week": 1},
-      {"name": "Week 2", "week": 2},
-      {"name": "Week 3", "week": 3},
-      {"name": "Week 4", "week": 4},
-      {"name": "Week 6", "week": 6},
-      {"name": "Week 8", "week": 8},
-      {"name": "Week 10", "week": 10},
-      {"name": "Week 12", "week": 12},
-      {"name": "Week 14", "week": 14},
-      {"name": "Week 16", "week": 16},
-      {"name": "Extension (every 4 weeks)", "week": "Q4W"},
-      {"name": "End of extension", "week": "[TBD]"},
-      {"name": "Safety follow-up", "week": "[TBD]"}
-    ],
-    "timepoint_labels_in_soa": ["DLT evaluation period", "Week 8", "Week 16", "End of extension"],
-    "rows": "disease_pack_draft.yaml soa_rows",
-    "src": "DERIVED (D7): weekly visits Weeks 1–4 for DLT and PK; every 2 weeks through Week 16 (eltrombopag dose adjustment and liver monitoring every 2 weeks [PRIOR:NDA22291-S021:label-5.2])"
+  {
+   "id": "P2",
+   "level": "primary",
+   "text": "治験薬投与下で発現した有害事象（TEAE）の発現割合と重症度（NCI CTCAE v6.0 で評価）",
+   "timepoint": "Week 16",
+   "type": "count",
+   "src": "STD + INSTR:CTCAE:2026-10-25",
+   "note": "Core-period analysis at Week 16; TEAEs also summarized through the end of the extension and safety follow-up",
+   "text_en": "Incidence and severity of treatment-emergent adverse events (TEAEs), graded by NCI CTCAE v6.0"
   },
-  "design_changes": "design_decisions.md"
+  {
+   "id": "S1",
+   "level": "secondary",
+   "text": "XYZ-531 の単回及び反復皮下投与後の血清中薬物動態パラメータ（Cmax、Tmax、AUC、t1/2、Ctrough）",
+   "timepoint": "Week 16",
+   "type": "continuous",
+   "src": "STD + CTG:NCT02148133 (PK as secondary)",
+   "text_en": "Serum pharmacokinetic parameters of XYZ-531 after single and multiple SC doses (Cmax, Tmax, AUC, t1/2, Ctrough)"
+  },
+  {
+   "id": "S2",
+   "level": "secondary",
+   "text": "XYZ-531 に対する抗薬物抗体（ADA）及び中和抗体の発現割合",
+   "timepoint": "Week 16",
+   "type": "binary",
+   "src": "STD (FDA Immunogenicity Testing guidance) + PRIOR:NDA22291-S021:clinical-review-8.4.10 (no immunogenicity data for the small-molecule precedent)",
+   "text_en": "Incidence of anti-drug antibodies (ADA) and neutralizing antibodies against XYZ-531"
+  },
+  {
+   "id": "S3",
+   "level": "secondary",
+   "text": "Week 16 に血液学的反応を示した参加者の割合",
+   "timepoint": "Week 16",
+   "type": "binary",
+   "src": "PRIOR:NDA22291-S021:label-14.3 + CTG:NCT00922883",
+   "text_en": "Proportion of participants with a hematologic response at Week 16"
+  },
+  {
+   "id": "S4",
+   "level": "secondary",
+   "text": "Week 8 に血小板反応を示した参加者の割合",
+   "timepoint": "Week 8",
+   "type": "binary",
+   "src": "CTG:NCT02094417 (early platelet response at Week 9; Week 8 aligns with the visit schedule, D7)",
+   "text_en": "Proportion of participants with a platelet response at Week 8"
+  },
+  {
+   "id": "S5",
+   "level": "secondary",
+   "text": "Week 16 までに血小板輸血非依存（8 週間以上連続して血小板輸血なし）を達成した参加者の割合",
+   "timepoint": "Week 16",
+   "type": "binary",
+   "src": "CTG:NCT02094417",
+   "text_en": "Proportion of participants achieving platelet transfusion independence (no platelet transfusion for at least 8 consecutive weeks) by Week 16"
+  },
+  {
+   "id": "E1",
+   "level": "exploratory",
+   "text": "血小板数、ヘモグロビン、好中球数及び網赤血球数のベースラインからの経時的変化",
+   "timepoint": "Week 16",
+   "type": "continuous",
+   "src": "CTG:NCT02148133",
+   "text_en": "Change from baseline in platelet count, hemoglobin, ANC and reticulocyte count over time"
+  },
+  {
+   "id": "E2",
+   "level": "exploratory",
+   "text": "血液学的反応までの期間及び血液学的反応の持続期間",
+   "timepoint": "延長期終了時",
+   "type": "time_to_event",
+   "src": "CTG:NCT02094417, NCT02148133",
+   "text_en": "Time to hematologic response and duration of hematologic response"
+  },
+  {
+   "id": "E3",
+   "level": "exploratory",
+   "text": "クローン進展（骨髄の新たな染色体異常、MDS/AML、PNH クローンの拡大）の発現割合",
+   "timepoint": "延長期終了時",
+   "type": "binary",
+   "src": "PRIOR:NDA22291-S021:clinical-review-p40-41",
+   "text_en": "Incidence of clonal evolution (new bone marrow cytogenetic abnormality, MDS/AML, or PNH clone expansion)"
+  }
+ ],
+ "response_definitions": {
+  "hematologic_response": "次の 1 項目以上を満たす: (1) 血小板反応 — 血小板数がベースラインから 20 × 10^9/L 以上増加、又は血小板輸血非依存で 8 週間以上安定した血小板数; (2) 赤血球反応（ベースラインのヘモグロビン < 9 g/dL の参加者）— 赤血球輸血なしでヘモグロビンが 1.5 g/dL を超えて増加、又は投与前 8 週間と比べて連続 8 週間の赤血球輸血が 4 単位以上減少; (3) 好中球反応（ベースラインの ANC < 0.5 × 10^9/L の参加者）— ANC が 100% 以上増加、又は 0.5 × 10^9/L を超えて増加",
+  "platelet_response": "Criterion (1) of the hematologic response",
+  "exclusion_window": "Values measured within [TBD] days after platelet transfusion, within [TBD] days after RBC transfusion, or during G-CSF use are not used to assess response",
+  "src": "PRIOR:NDA22291-S021:label-14.3 + CTG:NCT00922883 (verbatim match) + PRIOR:NDA22291-S021:clinical-review-p41 (growth factor/transfusion not counted)"
+ },
+ "dlt_definition": {
+  "text": "Any of the following events occurring during the DLT evaluation period and assessed as at least possibly related to XYZ-531: (a) Grade ≥ 3 non-hematologic TEAE (CTCAE v6.0), except Grade 3 nausea, vomiting or diarrhea resolving to ≤ Grade 1 within [TBD] days with supportive care; (b) any thromboembolic event; (c) ALT or AST > [TBD] × ULN, or ALT or AST > 3 × ULN with total bilirubin > 1.5 × ULN (concurrent); (d) platelet count > 400 × 10^9/L; (e) Grade ≥ 3 hypersensitivity or injection-site reaction; (f) new bone marrow cytogenetic abnormality or increase in bone marrow blasts; (g) any other toxicity judged dose-limiting by the Safety Review Committee. Worsening of cytopenias attributable to the underlying aplastic anemia is not a DLT unless the Safety Review Committee judges otherwise.",
+  "src": "STD (FIH) + PRIOR:NDA22291-S021:label-6.1 (ALT/AST > 3 × ULN with total bilirubin > 1.5 × ULN; new cytogenetic abnormality) + PRIOR:NDA22291-S021:label-2.3 Table 7 (> 400 × 10^9/L) + DERIVED"
+ },
+ "dose_modification": [
+  {
+   "condition": "Platelet count 200 × 10^9/L to 400 × 10^9/L at any time",
+   "action": "Reduce to the next lower dose level (or extend the interval) [DERIVED]",
+   "src": "PRIOR:NDA22291-S021:label-2.3 Table 7 (threshold)"
+  },
+  {
+   "condition": "Platelet count > 400 × 10^9/L",
+   "action": "Withhold XYZ-531 until platelet count < 150 × 10^9/L, then resume at the next lower dose level",
+   "src": "PRIOR:NDA22291-S021:label-2.3 Table 7 (thresholds) + DERIVED (antibody: withhold the next dose rather than 1 week)"
+  },
+  {
+   "condition": "ALT or AST > 6 × ULN",
+   "action": "Withhold XYZ-531; resume at the same or lower dose only after ALT/AST < 5 × ULN and Medical Monitor agreement",
+   "src": "PRIOR:NDA22291-S021:label-2.3 Table 6 (thresholds)"
+  },
+  {
+   "condition": "Thromboembolic event",
+   "action": "Permanently discontinue XYZ-531",
+   "src": "PRIOR:NDA22291-S021:label-2.3 Table 6"
+  },
+  {
+   "condition": "No hematologic response after 16 weeks",
+   "action": "Discontinue XYZ-531",
+   "src": "PRIOR:NDA22291-S021:label-2.3"
+  },
+  {
+   "condition": "New cytogenetic abnormality",
+   "action": "Discontinue XYZ-531 (consider; Safety Review Committee review)",
+   "src": "PRIOR:NDA22291-S021:label-2.3"
+  }
+ ],
+ "estimands": {
+  "_note": "第1相のため estimand は記述的。S3（Week 16 の血液学的反応）にだけ 5 属性を置く。",
+  "intercurrent_events": [
+   {
+    "ice": "新たな免疫抑制療法、HSCT 又は他の TPO 受容体作動薬の開始",
+    "strategy": "composite",
+    "handling": "non-responder from the ICE onward",
+    "src": "DERIVED + PACK:aplastic_anemia (draft)"
+   },
+   {
+    "ice": "XYZ-531 の投与の恒久的な中止",
+    "strategy": "treatment policy",
+    "handling": "blood counts collected after discontinuation are used",
+    "src": "STD"
+   },
+   {
+    "ice": "背景治療のシクロスポリン又は蛋白同化ステロイドの用量変更",
+    "strategy": "composite",
+    "handling": "non-responder from the ICE onward",
+    "src": "CTG:NCT02773290 (stable dose required) + DERIVED"
+   },
+   {
+    "ice": "反応判定前の除外期間内の輸血又は G-CSF の使用",
+    "strategy": "composite",
+    "handling": "the affected blood count value is not used to establish response",
+    "src": "PRIOR:NDA22291-S021:clinical-review-p41"
+   }
+  ],
+  "population_level_summary": "Proportion with exact (Clopper–Pearson) 95% CI by dose level; no hypothesis testing",
+  "missing": "Participants without an evaluable Week 16 assessment are non-responders (NRI)"
+ },
+ "rescue": [
+  {
+   "therapy": "Platelet or RBC transfusion (supportive)",
+   "ip_action": "continue",
+   "estimand_ice": "反応判定前の除外期間内の輸血又は G-CSF の使用",
+   "src": "CTG:NCT00922883"
+  },
+  {
+   "therapy": "G-CSF",
+   "ip_action": "continue",
+   "estimand_ice": "反応判定前の除外期間内の輸血又は G-CSF の使用",
+   "src": "CTG:NCT02148133"
+  },
+  {
+   "therapy": "New immunosuppressive therapy (ATG, start of cyclosporine), HSCT, or another TPO receptor agonist",
+   "ip_action": "discontinue",
+   "estimand_ice": "新たな免疫抑制療法、HSCT 又は他の TPO 受容体作動薬の開始",
+   "src": "DERIVED"
+  },
+  {
+   "therapy": "Dose change of background cyclosporine or anabolic steroids",
+   "ip_action": "continue",
+   "estimand_ice": "背景治療のシクロスポリン又は蛋白同化ステロイドの用量変更",
+   "src": "DERIVED"
+  }
+ ],
+ "multiplicity": {
+  "note": "none — no hypothesis testing (Phase 1)"
+ },
+ "sample_size": {
+  "see": "waypoints/sample_size.json",
+  "part_a": "12 to 24 participants (3 to 6 per dose level × 4 assumed dose levels)",
+  "part_b": "up to 20 participants (10 per dose level × up to 2 dose levels)",
+  "total_planned": "up to 44 participants (DLT-non-evaluable participants in Part A are replaced)",
+  "src": "STD (3+3) + CTG:NCT02094417 (4 dose levels; 7–10 per dose) + calculation (sample_size.json)"
+ },
+ "committees": {
+  "safety_review_committee": "Sponsor medical monitor, principal investigators of active sites, [TBD]; decides dose escalation, selection of Part B doses",
+  "src": "STD"
+ },
+ "soa": {
+  "visits": [
+   {
+    "name": "Screening",
+    "week": "[TBD] (Day -28 to Day -1 assumed)"
+   },
+   {
+    "name": "Day 1",
+    "week": 0
+   },
+   {
+    "name": "Day 2",
+    "week": "Day 2"
+   },
+   {
+    "name": "Day 4",
+    "week": "Day 4"
+   },
+   {
+    "name": "Week 1",
+    "week": 1
+   },
+   {
+    "name": "Week 2",
+    "week": 2
+   },
+   {
+    "name": "Week 3",
+    "week": 3
+   },
+   {
+    "name": "Week 4",
+    "week": 4
+   },
+   {
+    "name": "Week 6",
+    "week": 6
+   },
+   {
+    "name": "Week 8",
+    "week": 8
+   },
+   {
+    "name": "Week 10",
+    "week": 10
+   },
+   {
+    "name": "Week 12",
+    "week": 12
+   },
+   {
+    "name": "Week 14",
+    "week": 14
+   },
+   {
+    "name": "Week 16",
+    "week": 16
+   },
+   {
+    "name": "Extension (every 4 weeks)",
+    "week": "Q4W"
+   },
+   {
+    "name": "延長期終了時",
+    "week": "[TBD]"
+   },
+   {
+    "name": "Safety follow-up",
+    "week": "[TBD]"
+   }
+  ],
+  "timepoint_labels_in_soa": [
+   "DLT 評価期間",
+   "Week 8",
+   "Week 16",
+   "延長期終了時"
+  ],
+  "rows": "disease_pack_draft.yaml soa_rows",
+  "src": "DERIVED (D7): weekly visits Weeks 1–4 for DLT and PK; every 2 weeks through Week 16 (eltrombopag dose adjustment and liver monitoring every 2 weeks [PRIOR:NDA22291-S021:label-5.2])"
+ },
+ "design_changes": "design_decisions.md",
+ "language": {
+  "protocol": "ja",
+  "src": "USER（spec の既定 en を利用者指定で上書き）"
+ }
 }
